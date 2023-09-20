@@ -25,6 +25,8 @@
 ## Contributors
 
 - [Daniel Eduardo Parra Gómez - Código 20181020110][1]
+- [Juan Felipe Rodríguez Galindo - Código 20181020158][3]
 
 [1]:https://github.com/Dannyngve5
 [2]:https://github.com/Dannyngve5/Videojuego_multimedia/tree/main/Codigo_fuente
+[3]:https://github.com/Juferoga
