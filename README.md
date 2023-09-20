@@ -13,7 +13,7 @@
 [![Daniel Eduardo Parra Gómez](https://img.shields.io/badge/Dannyngve5-github-br?style=flat-square)](https://github.com/Dannyngve5)
 
 
-**Proyecto final de la materia Multimedia, consiste en un videojuego 2D tipo Shooter.
+**Proyecto final de la materia Multimedia, consiste en un videojuego 2D tipo Shooter.**
 
 <br>
 
