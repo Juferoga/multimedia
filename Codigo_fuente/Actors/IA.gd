@@ -14,6 +14,10 @@ var player: Player = null
 var weapon: Weapon = null
 var actor = null
 
+var movement_direction := Vector2.ZERO	
+export (int) var speed = 100
+
+
 func _process(delta: float) -> void:
 	match current_state:
 		State.PATROL:
@@ -21,6 +25,9 @@ func _process(delta: float) -> void:
 		State.ENGAGE:
 			if player != null and weapon != null:
 				actor.rotation = actor.global_position.direction_to(player.global_position).angle()
+				movement_direction = global_position.direction_to(player.global_position)
+				movement_direction = movement_direction.normalized() 
+				actor.move_and_slide(movement_direction * speed)
 				weapon.shoot() 
 			else:
 				print("In the ENGAGE state but no weapon/players")
