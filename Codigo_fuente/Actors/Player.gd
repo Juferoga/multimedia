@@ -2,16 +2,12 @@ extends KinematicBody2D
 
 class_name Player
 
-signal player_fired_bullet(bullet, position, direction)
 
 
 export (int) var speed = 250
 
 onready var weapon = $Weapon
 onready var health_stat = $Health
-
-func _ready() -> void:
-	weapon.connect("weapon_fired", self, "shoot")
 
 #Función que es llamada cada frame
 func _physics_process(delta: float) -> void:
@@ -33,12 +29,11 @@ func _physics_process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot"):
 		weapon.shoot()
-		
-func shoot(bullet_instance, location: Vector2, direction:Vector2):
-	emit_signal("player_fired_bullet", bullet_instance, location, direction)
+
 	
 func handle_hit():
 	health_stat.health -= 20
+	print("Player hit")
 	
 	
 	
