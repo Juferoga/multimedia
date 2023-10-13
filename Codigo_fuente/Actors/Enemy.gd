@@ -9,6 +9,6 @@ func _ready() -> void:
 	ia.initialize(self, weapon)
 
 func handle_hit():
-	health_stat.health -= 20
+	health_stat.health -= 100
 	if health_stat.health <= 0:
 		queue_free()
