@@ -9,6 +9,7 @@ export (int) var speed = 250
 onready var weapon = $Weapon
 onready var health_stat = $Health
 
+
 #Función que es llamada cada frame
 func _physics_process(delta: float) -> void:
 	var movement_direction := Vector2.ZERO	
@@ -33,7 +34,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 func handle_hit():
 	health_stat.health -= 20
-	print("Player hit")
+	if health_stat.health <= 0:
+		self.visible = false  # Desactiva el renderizado del enemigo
+		self.collision_layer = 0  # Deshabilita la colisión del enemigo
+		self.collision_mask = 0
+			
+	
+		
+	
 	
 	
 	

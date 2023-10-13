@@ -21,5 +21,6 @@ func _on_SpawnTimer_timeout():
 	enemy_instance.position = chosen_location.position # Establece la posición del enemigo recién generado en la ubicación elegida
 	$SpawnTimer.start() # Reinicia el temporizador para la próxima generación
 	
+
 	
 	
