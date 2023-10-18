@@ -43,7 +43,7 @@ func _process(delta: float) -> void:
 func initialize(actor, weapon: Weapon):
 	self.actor = actor
 	self.weapon = weapon	
-	weapon.connect("weapon_out_of_ammo", self, "handle_reload")
+	
 
 func set_state(new_state: int):
 	if new_state == current_state:

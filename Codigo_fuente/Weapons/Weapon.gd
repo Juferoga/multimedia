@@ -2,7 +2,7 @@ extends Node2D
 
 class_name Weapon
 
-signal weapon_out_of_ammmo
+
 signal reload_started
 signal reload_finished
 
@@ -44,6 +44,5 @@ func shoot():
 		attack_cooldown.start()
 		animation_player.play("GunFlash")
 		current_ammo -= 1
-		if current_ammo == 0:
-			emit_signal("weapon_out_of_ammo")
+		
 			
