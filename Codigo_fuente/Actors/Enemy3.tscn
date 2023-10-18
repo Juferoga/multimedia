@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Actors/Enemy3.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Health.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/topdown-shooter/Spritesheet/spritesheet_characters.png" type="Texture" id=3]
 [ext_resource path="res://Actors/IA3.gd" type="Script" id=4]
+[ext_resource path="res://Actors/Team.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 14.5, 19.5 )
@@ -37,5 +38,8 @@ script = ExtResource( 4 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="IA3/PlayerDetection"]
 position = Vector2( 148, 80.0009 )
 shape = SubResource( 2 )
+
+[node name="Team" parent="." instance=ExtResource( 5 )]
+team = 1
 
 [connection signal="body_entered" from="IA3/PlayerDetection" to="IA3" method="_on_PlayerDetection_body_entered"]

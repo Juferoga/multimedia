@@ -6,9 +6,12 @@ class_name Player
 
 export (int) var speed = 250
 
-onready var weapon = $Weapon
+onready var weapon: Weapon = $Weapon
 onready var health_stat = $Health
+onready var team = $Team
 
+func _ready():
+	weapon.initialize(team.team)
 
 #Función que es llamada cada frame
 func _physics_process(delta: float) -> void:
@@ -39,6 +42,8 @@ func handle_hit():
 		self.collision_layer = 0  # Deshabilita la colisión del enemigo
 		self.collision_mask = 0
 			
+func get_team() -> int:
+	return team.team
 	
 		
 	
