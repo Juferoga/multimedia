@@ -15,7 +15,7 @@ var weapon: Weapon = null
 var actor = null
 
 var movement_direction := Vector2.ZERO	
-export (int) var speed = 100
+export (int) var speed = 200
 export (int) var damage = 10
 
 

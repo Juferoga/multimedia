@@ -7,7 +7,6 @@ var enemy_list = [
 	{ "path": "res://Actors/Enemy.tscn", "weight": 5 }, 
 	{ "path": "res://Actors/Enemy2.tscn", "weight": 1 },
 	{ "path": "res://Actors/Enemy3.tscn", "weight": 15 }  
-	
 ]
 
 # Called when the node enters the scene tree for the first time.

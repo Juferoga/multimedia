@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Actors/Enemy3.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Health.tscn" type="PackedScene" id=2]
@@ -7,7 +7,10 @@
 [ext_resource path="res://Actors/Team.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 14.5, 19.5 )
+extents = Vector2( 12.5, 19.5 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 6.50001, 20 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 876.002, 1220 )
@@ -23,9 +26,14 @@ region_enabled = true
 region_rect = Rect2( 426, 0, 34, 44 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 1.5, 1.52588e-05 )
+position = Vector2( -0.5, 0 )
 shape = SubResource( 1 )
+
+[node name="AttackZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackZone"]
+position = Vector2( 17.5, 0.00012207 )
+shape = SubResource( 3 )
 
 [node name="Health" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0, -1.52588e-05 )
@@ -36,10 +44,12 @@ script = ExtResource( 4 )
 [node name="PlayerDetection" type="Area2D" parent="IA3"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="IA3/PlayerDetection"]
+visible = false
 position = Vector2( 148, 80.0009 )
 shape = SubResource( 2 )
 
 [node name="Team" parent="." instance=ExtResource( 5 )]
 team = 1
 
+[connection signal="body_shape_entered" from="AttackZone" to="." method="_on_AttackZone_body_shape_entered"]
 [connection signal="body_entered" from="IA3/PlayerDetection" to="IA3" method="_on_PlayerDetection_body_entered"]
