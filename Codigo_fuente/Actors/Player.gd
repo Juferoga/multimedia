@@ -12,6 +12,9 @@ onready var weapon: Weapon = $Weapon
 onready var health_stat = $Health
 onready var team = $Team
 
+
+
+
 func _ready():
 	weapon.initialize(team.team)
 	weapon.connect("reload_started", self, "_on_reload_started")
@@ -43,6 +46,8 @@ func _physics_process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot") and not is_reloading:
 		weapon.shoot()
+		
+		
 	elif event.is_action_released("reload") and not is_reloading:
 		weapon.start_reload()
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/topdown-shooter/Tilesheet/tilesheet_complete.png" type="Texture" id=1]
 [ext_resource path="res://Base.gd" type="Script" id=2]
+[ext_resource path="res://Sounds/CaputreBaseSound.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=110]
 extents = Vector2( 187.383, 123.395 )
@@ -24,7 +25,12 @@ scale = Vector2( 1.77195, 1.77623 )
 texture = SubResource( 111 )
 
 [node name="BaseTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 30.0
+
+[node name="CaputreBaseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = 0.191
+pitch_scale = 0.96
 
 [connection signal="body_entered" from="." to="." method="_on_Base_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Base_body_exited"]

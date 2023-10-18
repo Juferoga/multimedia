@@ -5,11 +5,14 @@ export (int) var speed = 10
 
 onready var kill_timer = $KillTimer
 
+
 var direction := Vector2.ZERO
 var team: int = -1
 
 func _ready() -> void:
 	kill_timer.start()
+	
+	
 
 func _physics_process(delta: float) -> void:
 	if direction != Vector2.ZERO:

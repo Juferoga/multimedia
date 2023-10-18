@@ -5,6 +5,7 @@ var neutral_color = Color(1, 1, 1)
 
 onready var base_timer = $BaseTimer
 onready var sprite = $Sprite
+onready var captured_sound = $CaputreBaseSound
 
 var stored_time = 0.0
 var in_zone = false
@@ -30,6 +31,7 @@ func _on_Base_body_exited(body):
 func _on_BaseTimer_timeout():
 	sprite.modulate = base_color
 	base_timer.stop()
+	captured_sound.playing = true
 
 #Imprime en consola el tiempo (Es para la GUI alguna lógica así seguramente)
 func _process(delta: float) -> void:
