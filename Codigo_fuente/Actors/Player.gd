@@ -6,12 +6,22 @@ class_name Player
 
 export (int) var speed = 250
 
+var is_reloading = false
+
 onready var weapon: Weapon = $Weapon
 onready var health_stat = $Health
 onready var team = $Team
 
 func _ready():
 	weapon.initialize(team.team)
+	weapon.connect("reload_started", self, "_on_reload_started")
+	weapon.connect("reload_finished", self, "_on_reload_finished")
+
+func _on_reload_started():
+	is_reloading = true
+
+func _on_reload_finished():
+	is_reloading = false
 
 #Función que es llamada cada frame
 func _physics_process(delta: float) -> void:
@@ -31,9 +41,9 @@ func _physics_process(delta: float) -> void:
 	look_at(get_global_mouse_position())
 	
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("shoot"):
+	if event.is_action_pressed("shoot") and not is_reloading:
 		weapon.shoot()
-	elif event.is_action_released("reload"):
+	elif event.is_action_released("reload") and not is_reloading:
 		weapon.start_reload()
 
 	

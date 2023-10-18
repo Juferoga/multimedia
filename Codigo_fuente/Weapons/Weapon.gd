@@ -3,6 +3,8 @@ extends Node2D
 class_name Weapon
 
 signal weapon_out_of_ammmo
+signal reload_started
+signal reload_finished
 
 export (PackedScene) var Bullet 
 
@@ -27,12 +29,12 @@ func initialize(team: int):
 	self.team = team
 
 func start_reload():
-	print("Start")
+	emit_signal("reload_started")
 	animation_player.play("Reload")
 
 func _stop_reload():
-	print("Stop")
 	current_ammo = max_ammo
+	emit_signal("reload_finished")
 
 func shoot():
 	if current_ammo != 0 and attack_cooldown.is_stopped() and Bullet	 != null:	
