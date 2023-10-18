@@ -32,7 +32,7 @@ func _on_AttackZone_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
 		targets.append(body)
 		attacking = true
-		print("Atacando")
+		print("Dentro")
 		if current_cooldown <= 0.0:
 			_attack()
 		else:
@@ -44,6 +44,7 @@ func _on_AttackZone_body_exited(body: Node) -> void:
 		if targets.size() == 0:
 			attacking = false
 			current_cooldown = 0.0
+			print("Saliendo")
 
 func _attack() -> void:
 	for target in targets:

@@ -18,6 +18,10 @@ var movement_direction := Vector2.ZERO
 export (int) var speed = 100
 
 
+func _ready():
+	pass
+
+
 func _process(delta: float) -> void:
 	match current_state:
 		State.PATROL:
@@ -29,6 +33,8 @@ func _process(delta: float) -> void:
 				movement_direction = movement_direction.normalized() 
 				actor.move_and_slide(movement_direction * speed)
 				weapon.shoot() 
+				if weapon.current_ammo == 0:
+					weapon.start_reload()
 			else:
 				print("In the ENGAGE state but no weapon/players")
 		_:
@@ -37,7 +43,7 @@ func _process(delta: float) -> void:
 func initialize(actor, weapon: Weapon):
 	self.actor = actor
 	self.weapon = weapon	
-	
+	weapon.connect("weapon_out_of_ammo", self, "handle_reload")
 
 func set_state(new_state: int):
 	if new_state == current_state:
@@ -46,7 +52,8 @@ func set_state(new_state: int):
 	current_state = new_state
 	emit_signal("state_changed", current_state)
 
-
+func handle_reload():
+	weapon.start_reload()
 	
 
 func _on_PlayerDetection_body_entered(body):

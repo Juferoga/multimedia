@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Weapons/Bullet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/kenney_topdowntanksredux/Spritesheet/onlyObjects_default.png" type="Texture" id=2]
@@ -16,7 +16,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05 ),
+"times": PoolRealArray( 0.000273565, 0.05 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -32,6 +32,35 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 0.5, 1.2 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Reload"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.0025, 0.33, 0.66, 0.9725 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 45.0, -45.0, 0.0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.9525 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_stop_reload"
+} ]
 }
 
 [node name="Weapon" type="Node2D"]
@@ -52,12 +81,13 @@ wait_time = 0.5
 one_shot = true
 
 [node name="GunFlash" type="Sprite" parent="."]
-visible = false
 position = Vector2( 28, -3.63798e-12 )
 rotation = -1.5708
+scale = Vector2( 0.920666, 1.03173 )
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 324, 334, 20, 25 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/GunFlash = SubResource( 1 )
+anims/Reload = SubResource( 2 )

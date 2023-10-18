@@ -51,5 +51,4 @@ shape = SubResource( 2 )
 [node name="Team" parent="." instance=ExtResource( 5 )]
 team = 1
 
-[connection signal="body_shape_entered" from="AttackZone" to="." method="_on_AttackZone_body_shape_entered"]
 [connection signal="body_entered" from="IA3/PlayerDetection" to="IA3" method="_on_PlayerDetection_body_entered"]

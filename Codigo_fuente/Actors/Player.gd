@@ -33,6 +33,8 @@ func _physics_process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot"):
 		weapon.shoot()
+	elif event.is_action_released("reload"):
+		weapon.start_reload()
 
 	
 func handle_hit():
@@ -41,6 +43,9 @@ func handle_hit():
 		self.visible = false  # Desactiva el renderizado del enemigo
 		self.collision_layer = 0  # Deshabilita la colisión del enemigo
 		self.collision_mask = 0
+		
+func reload(): 
+	weapon.start_reload()
 			
 func get_team() -> int:
 	return team.team
