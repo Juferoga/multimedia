@@ -1,10 +1,15 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/topdown-shooter/Spritesheet/spritesheet_characters.png" type="Texture" id=2]
 [ext_resource path="res://Weapons/Weapon.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Actors/Health.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Actors/Team.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Sounds/PlayerPain/9.wav" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/PlayerPain/8.wav" type="AudioStream" id=7]
+[ext_resource path="res://Sounds/PlayerPain/13.wav" type="AudioStream" id=8]
+[ext_resource path="res://Sounds/PlayerPain/11.wav" type="AudioStream" id=9]
+[ext_resource path="res://Sounds/PlayerPain/12.wav" type="AudioStream" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 18, 19.75 )
@@ -28,3 +33,20 @@ shape = SubResource( 1 )
 position = Vector2( 24, 12 )
 
 [node name="Team" parent="." instance=ExtResource( 5 )]
+
+[node name="PainSounds" type="Node2D" parent="."]
+
+[node name="PainSound1" type="AudioStreamPlayer2D" parent="PainSounds"]
+stream = ExtResource( 7 )
+
+[node name="PainSound3" type="AudioStreamPlayer2D" parent="PainSounds"]
+stream = ExtResource( 6 )
+
+[node name="PainSound2" type="AudioStreamPlayer2D" parent="PainSounds"]
+stream = ExtResource( 9 )
+
+[node name="PainSound4" type="AudioStreamPlayer2D" parent="PainSounds"]
+stream = ExtResource( 10 )
+
+[node name="PainSound5" type="AudioStreamPlayer2D" parent="PainSounds"]
+stream = ExtResource( 8 )

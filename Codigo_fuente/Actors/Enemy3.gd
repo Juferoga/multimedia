@@ -4,6 +4,11 @@ onready var health_stat = $Health
 onready var ia3 = $IA3
 onready var team = $Team
 onready var attack = $AttackZone
+onready var attack_sound = $AttackSound
+onready var attack_animation = $AnimationPlayer
+onready var death_sound = $DeathSound
+onready var sprite = $Sprite
+
 
 export (int) var damage = 100  
 export (float) var attack_cooldown = 1.0
@@ -11,16 +16,26 @@ export (float) var attack_cooldown = 1.0
 var attacking = false
 var current_cooldown = 0.0
 var targets = []
+var is_diyng = false 
+
 
 func _ready() -> void: 
 	ia3.initialize(self)
+	sprite.show()
 	attack.connect("body_entered", self, "_on_AttackZone_body_entered")
 	attack.connect("body_exited", self, "_on_AttackZone_body_exited")
 
 func handle_hit():
 	health_stat.health -= damage 
 	if health_stat.health <= 0:
-		queue_free()
+		is_diyng = true
+		attack_animation.play("DeathAnimation")
+		death_sound.play()
+		
+
+func _on_animation_finished():
+	queue_free()
+
 		
 func hit():
 	attack.monitoring = true
@@ -32,7 +47,7 @@ func _on_AttackZone_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
 		targets.append(body)
 		attacking = true
-		print("Dentro")
+		
 		if current_cooldown <= 0.0:
 			_attack()
 		else:
@@ -44,13 +59,18 @@ func _on_AttackZone_body_exited(body: Node) -> void:
 		if targets.size() == 0:
 			attacking = false
 			current_cooldown = 0.0
-			print("Saliendo")
+			
 
 func _attack() -> void:
 	for target in targets:
-		if target.has_method("handle_hit"):
+		if target.has_method("handle_hit") and is_diyng != true:
 			target.handle_hit()
-			print("Collision")
+			#Sonido
+			attack_animation.play("AnimationAttack")
+			attack_sound.play()
+			
+			
+			
 	current_cooldown = attack_cooldown
 
 func _process(delta: float) -> void:

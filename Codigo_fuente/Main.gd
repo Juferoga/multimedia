@@ -28,7 +28,7 @@ func _on_SpawnTimer_timeout():
 		current_weight += enemy["weight"] 
 		if random_number <= current_weight:  
 			selected_enemy_path = enemy["path"]
-			print("Spawnea un " + selected_enemy_path)
+			#print("Spawnea un " + selected_enemy_path)
 			break
 			
 

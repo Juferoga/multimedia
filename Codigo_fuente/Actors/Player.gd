@@ -11,6 +11,8 @@ var is_reloading = false
 onready var weapon: Weapon = $Weapon
 onready var health_stat = $Health
 onready var team = $Team
+onready var pain_sounds = $PainSounds
+
 
 
 
@@ -58,6 +60,12 @@ func handle_hit():
 		self.visible = false  # Desactiva el renderizado del enemigo
 		self.collision_layer = 0  # Deshabilita la colisión del enemigo
 		self.collision_mask = 0
+	else:
+		var sound_index = randi() % 5  # Genera un índice aleatorio entre 0 y 4
+		var sound_to_play = pain_sounds.get_child(sound_index)
+		if sound_to_play is AudioStreamPlayer2D:
+			sound_to_play.play()
+		
 		
 func reload(): 
 	weapon.start_reload()

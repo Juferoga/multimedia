@@ -49,7 +49,7 @@ func shoot():
 		GlobalSignals.emit_signal("bullet_fired", bullet_instance, team,  end_of_gun.global_position, direction)
 		attack_cooldown.start()
 		animation_player.play("GunFlash")
-		print("Gunshoot") #Aqui deberia ir el sondo supongo lptm
+		#print("Gunshoot") #Aqui deberia ir el sondo supongo lptm
 		current_ammo -= 1
 		
 			

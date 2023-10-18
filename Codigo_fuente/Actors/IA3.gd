@@ -2,12 +2,14 @@ extends Node2D
 
 signal state_changed(new_state)
 
+
 enum State {
 	PATROL, 
 	ENGAGE 
 }
 
 onready var player_detection = $PlayerDetection
+
 
 var current_state: int  = State.PATROL setget set_state
 var player: Player = null 
@@ -24,7 +26,7 @@ func _process(delta: float) -> void:
 		State.PATROL:
 			pass
 		State.ENGAGE:
-			if player != null:
+			if player != null and actor.is_diyng == false:
 				actor.rotation = actor.global_position.direction_to(player.global_position).angle()
 				movement_direction = global_position.direction_to(player.global_position)
 				movement_direction = movement_direction.normalized() 
