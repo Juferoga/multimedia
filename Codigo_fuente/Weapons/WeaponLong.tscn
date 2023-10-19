@@ -78,7 +78,7 @@ position = Vector2( 16, 0 )
 position = Vector2( 28, 0 )
 
 [node name="AttackCooldown" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.2
 one_shot = true
 
 [node name="GunFlash" type="Sprite" parent="."]

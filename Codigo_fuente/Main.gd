@@ -4,11 +4,12 @@ onready var bullet_manager = $BulletManager
 onready var player: Player = $Player
 
 var enemy_list = [
-	{ "path": "res://Actors/Enemy.tscn", "weight": 5 }, 
-	{ "path": "res://Actors/Enemy2.tscn", "weight": 1 },
-	{ "path": "res://Actors/Enemy3.tscn", "weight": 15 }  
+	{ "path": "res://Actors/Enemy.tscn", "weight": 5 }, #CALVO
+	{ "path": "res://Actors/Enemy2.tscn", "weight": 1 }, #ROBOT
+	{ "path": "res://Actors/Enemy3.tscn", "weight": 15 }  #ZOMBIE
 	
 ]
+# 1 5 15 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -67,10 +67,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.15 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.07, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ false, true, false ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("DeathFlash:scale")
@@ -82,7 +82,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.15 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0.75, 0.75 ), Vector2( 0.1, 0.3 ) ]
+"values": [ Vector2( 0.3, 0.3 ), Vector2( 0.1, 0.3 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Sprite:visible")
@@ -96,6 +96,30 @@ tracks/3/keys = {
 "update": 1,
 "values": [ true, false ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.02, 0.05, 0.09, 0.12, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.9, 0.9 ), Vector2( 0.7, 0.7 ), Vector2( 0.5, 0.5 ), Vector2( 0.3, 0.3 ), Vector2( 0.1, 0.1 ), Vector2( 0, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprite:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.01 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.854902, 0.321569, 0.321569, 1 ) ]
+}
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 8 )
@@ -107,6 +131,7 @@ rotation = 1.57079
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.9, 0.9 )
 texture = SubResource( 4 )
 region_rect = Rect2( 426, 0, 34, 44 )
 
@@ -154,8 +179,8 @@ pitch_scale = 2.5
 
 [node name="DeathFlash" type="Sprite" parent="."]
 visible = false
-position = Vector2( 0.303467, -0.319946 )
-scale = Vector2( 0.1, 0.3 )
+position = Vector2( -0.539551, 0.483978 )
+scale = Vector2( 0.3, 0.3 )
 texture = SubResource( 8 )
 
 [connection signal="body_entered" from="IA3/PlayerDetection" to="IA3" method="_on_PlayerDetection_body_entered"]
