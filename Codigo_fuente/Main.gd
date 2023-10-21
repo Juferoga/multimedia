@@ -66,8 +66,8 @@ func level_configuration(level: int):
 		1:
 			enemy_list[0]["weight"] = 0
 			enemy_list[1]["weight"] = 0
-			enemy_list[2]["weight"] = 5
-			$SpawnTimer.wait_time = 3
+			enemy_list[2]["weight"] = 15
+			$SpawnTimer.wait_time = 2.5
 		2:
 			enemy_list[0]["weight"] = 3
 			enemy_list[1]["weight"] = 1
@@ -88,9 +88,11 @@ func increase_difficulty(baseTimer: int):
 	if $SpawnTimer.wait_time - decrease_timer != 0:
 		$SpawnTimer.wait_time -= decrease_timer
 		
-	if baseTimer <= 30:
+	if baseTimer <= 60:
 		print("calvo")
-		enemy_list[0]["weight"] = 3
+		enemy_list[0]["weight"] = 5
+	if baseTimer <= 30:
+		enemy_list[1]["weight"] = 3
 	print($SpawnTimer.wait_time)
 	
 	pass

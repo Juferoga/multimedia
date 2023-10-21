@@ -5,7 +5,7 @@
 [ext_resource path="res://Sounds/CaputreBaseSound.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=110]
-extents = Vector2( 187.383, 123.395 )
+extents = Vector2( 172, 110 )
 
 [sub_resource type="AtlasTexture" id=111]
 atlas = ExtResource( 1 )
@@ -15,17 +15,16 @@ region = Rect2( 1230, 718, 36, 36 )
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 191.37, 128.386 )
+position = Vector2( 204, 122 )
 shape = SubResource( 110 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 195.357, 139.878 )
+position = Vector2( 196, 132 )
 scale = Vector2( 1.77195, 1.77623 )
 texture = SubResource( 111 )
 
 [node name="BaseTimer" type="Timer" parent="."]
-wait_time = 60.0
+wait_time = 90.0
 
 [node name="CaputreBaseSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )

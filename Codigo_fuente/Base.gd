@@ -10,7 +10,7 @@ onready var captured_sound = $CaputreBaseSound
 var stored_time = 0.0
 var in_zone = false
 var init_time = 0.0
-var seconds_change_difficulty_interval = 10
+var seconds_change_difficulty_interval = 30
 var seconds_change_difficulty_total = seconds_change_difficulty_interval
 
 signal change_difficulty
