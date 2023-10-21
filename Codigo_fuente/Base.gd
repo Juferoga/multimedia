@@ -57,10 +57,10 @@ func _process(delta: float) -> void:
 	if rounded_init_time - seconds_change_difficulty_total == rounded_base_timer and rounded_init_time - seconds_change_difficulty_total != 0:
 		seconds_change_difficulty_total += seconds_change_difficulty_interval
 		emit_signal("change_difficulty", rounded_base_timer)
-		print("Emit signal")
+		
 	
 	if tiempoahora != tiempoantes and tiempoahora != 0:
-		print(tiempoahora)
+		#print(tiempoahora)
 		#var comparison_string = str(rounded_init_time) + " - " + str(seconds_change_difficulty_total) + " == " + str(rounded_base_timer)
 		#print(comparison_string)
 		tiempoantes = tiempoahora

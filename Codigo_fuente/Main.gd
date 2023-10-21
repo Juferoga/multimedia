@@ -3,6 +3,8 @@ extends Node2D
 onready var bullet_manager = $BulletManager
 onready var player: Player = $Player
 onready var base = $Base 
+onready var back_music_level1 = $BackMusicLevel1
+
 
 
 var active_enemies = []  # Lista para almacenar los enemigos activos
@@ -10,6 +12,8 @@ var weight_enemy = 0
 var weight_enemy2 = 0
 var weight_enemy3 = 0
 var level = 1
+
+
 
 
 var enemy_list = [
@@ -28,6 +32,7 @@ func _ready():
 	base.connect("change_difficulty", self, "increase_difficulty")
 	level_configuration(level)
 	$SpawnTimer.start()
+	
 
 func _on_SpawnTimer_timeout():
 		
@@ -68,6 +73,9 @@ func level_configuration(level: int):
 			enemy_list[1]["weight"] = 0
 			enemy_list[2]["weight"] = 15
 			$SpawnTimer.wait_time = 2.5
+			back_music_level1.pitch_scale = 0.95
+			back_music_level1.play()
+			
 		2:
 			enemy_list[0]["weight"] = 3
 			enemy_list[1]["weight"] = 1
@@ -83,18 +91,21 @@ func level_configuration(level: int):
 	
 func increase_difficulty(baseTimer: int):
 	var decrease_timer = 0.5
-	print("Level difficulty")
+	
 	
 	if $SpawnTimer.wait_time - decrease_timer != 0:
 		$SpawnTimer.wait_time -= decrease_timer
 		
 	if baseTimer <= 60:
-		print("calvo")
+		
 		enemy_list[0]["weight"] = 5
+		back_music_level1.pitch_scale = 1
+	
 	if baseTimer <= 30:
 		enemy_list[1]["weight"] = 3
-	print($SpawnTimer.wait_time)
+		back_music_level1.pitch_scale = 1.05
 	
-	pass
+	
+	
 
 	
