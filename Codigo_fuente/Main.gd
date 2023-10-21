@@ -6,8 +6,8 @@ onready var player: Player = $Player
 
 
 var enemy_list = [
-	{ "path": "res://Actors/Enemy.tscn", "weight": 1 }, #CALVO
-	{ "path": "res://Actors/Enemy2.tscn", "weight": 0 }, #ROBOT
+	{ "path": "res://Actors/Enemy.tscn", "weight": 5 }, #CALVO
+	{ "path": "res://Actors/Enemy2.tscn", "weight": 1 }, #ROBOT
 	{ "path": "res://Actors/Enemy3.tscn", "weight": 15 }  #ZOMBIE
 	
 ]
