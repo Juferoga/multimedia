@@ -3,17 +3,23 @@ extends Node2D
 onready var bullet_manager = $BulletManager
 onready var player: Player = $Player
 
+
+
 var enemy_list = [
-	{ "path": "res://Actors/Enemy.tscn", "weight": 5 }, #CALVO
-	{ "path": "res://Actors/Enemy2.tscn", "weight": 1 }, #ROBOT
+	{ "path": "res://Actors/Enemy.tscn", "weight": 1 }, #CALVO
+	{ "path": "res://Actors/Enemy2.tscn", "weight": 0 }, #ROBOT
 	{ "path": "res://Actors/Enemy3.tscn", "weight": 15 }  #ZOMBIE
 	
 ]
 # 1 5 15 
 
+var active_enemies = []  # Lista para almacenar los enemigos activos
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GlobalSignals.connect("bullet_fired", bullet_manager, "handle_bullet_spawned")
+	player.connect("respawn_player", self, "clear_enemies")
 	$SpawnTimer.start()
 
 func _on_SpawnTimer_timeout():
@@ -41,5 +47,11 @@ func _on_SpawnTimer_timeout():
 	
 	enemy_instance.position = chosen_location.position  
 	$SpawnTimer.start()  
+	
+func clear_enemies():
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		enemy.queue_free()
+		
+
 
 	

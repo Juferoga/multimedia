@@ -9,6 +9,7 @@ onready var captured_sound = $CaputreBaseSound
 
 var stored_time = 0.0
 var in_zone = false
+var init_time = 0.0
 
 func _ready():
 	pass
@@ -21,6 +22,8 @@ func _on_Base_body_entered(body):
 			stored_time = 0.0
 		else:
 			base_timer.start() 
+			init_time = base_timer.time_left
+						
 
 func _on_Base_body_exited(body):
 	if body.is_in_group("player"):
@@ -35,9 +38,12 @@ func _on_BaseTimer_timeout():
 
 #Imprime en consola el tiempo (Es para la GUI alguna lógica así seguramente)
 func _process(delta: float) -> void:
+	print(init_time)
 	if in_zone and base_timer.time_left > 0:
 		print(base_timer.time_left)
 	elif not in_zone and stored_time > 0:
 		print(stored_time)
+	
+ 
 
 

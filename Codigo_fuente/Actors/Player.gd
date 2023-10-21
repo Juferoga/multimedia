@@ -7,6 +7,8 @@ class_name Player
 export (int) var speed = 250
 
 var is_reloading = false
+var lives: int = 3
+var initial_position: Vector2
 
 onready var weapon: Weapon = $Weapon
 onready var health_stat = $Health
@@ -15,9 +17,13 @@ onready var pain_sounds = $PainSounds
 
 
 
+signal respawn_player
+
+
 
 
 func _ready():
+	initial_position = global_position
 	weapon.initialize(team.team)
 	weapon.connect("reload_started", self, "_on_reload_started")
 	weapon.connect("reload_finished", self, "_on_reload_finished")
@@ -57,9 +63,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func handle_hit():
 	health_stat.health -= 20
 	if health_stat.health <= 0:
-		self.visible = false  # Desactiva el renderizado del enemigo
-		self.collision_layer = 0  # Deshabilita la colisión del enemigo
-		self.collision_mask = 0
+		lose_life()
 	else:
 		var sound_index = randi() % 5  # Genera un índice aleatorio entre 0 y 4
 		var sound_to_play = pain_sounds.get_child(sound_index)
@@ -73,8 +77,25 @@ func reload():
 func get_team() -> int:
 	return team.team
 	
-		
+func lose_life():
+	lives -= 1
+	if lives <= 0:
+		# Aquí se realizarían las acciones para cuando el jugador se queda sin vidas, como reiniciar el nivel o mostrar una pantalla de game over
+		player_death()
+		print("Game Over")
+	else:
+		# Aquí se realizarían las acciones para cuando el jugador pierde una vida pero aún tiene vidas restantes, como reiniciar la posición del jugador o reiniciar la escena
+		health_stat.health = 100
+		global_position = initial_position
+		emit_signal("respawn_player")
+		print("Lost a life, remaining lives:", lives)
+		#Emitir una señal  
+		# Restaurar la salud del jugador u otras acciones necesarias para reiniciar el estado del jugador
 	
+func player_death():
+	self.visible = false  # Desactiva el renderizado del enemigo
+	self.collision_layer = 0  # Deshabilita la colisión del enemigo
+	self.collision_mask = 0
 	
 	
 	
