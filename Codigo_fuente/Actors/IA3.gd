@@ -32,7 +32,8 @@ func _process(delta: float) -> void:
 				movement_direction = movement_direction.normalized() 
 				actor.move_and_slide(movement_direction * speed)
 			else:
-				print("In the ENGAGE state but no weapon/players")
+				#print("In the ENGAGE state but no weapon/players")
+				pass
 		_:
 			print("Error: state enemy unknow")
 

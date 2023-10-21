@@ -36,7 +36,8 @@ func _process(delta: float) -> void:
 				if weapon.current_ammo == 0:
 					weapon.start_reload()
 			else:
-				print("In the ENGAGE state but no weapon/players")
+				#print("In the ENGAGE state but no weapon/players")
+				pass
 		_:
 			print("Error: state enemy unknow")
 
