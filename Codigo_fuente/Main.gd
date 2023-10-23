@@ -4,8 +4,8 @@ onready var bullet_manager = $BulletManager
 onready var player: Player = $Player
 onready var base = $Base 
 onready var back_music_level1 = $BackMusicLevel1
-
-
+onready var gui = $GUI
+onready var spawn_timer = $SpawnTimer
 
 var active_enemies = []  # Lista para almacenar los enemigos activos
 var weight_enemy = 0
@@ -13,25 +13,24 @@ var weight_enemy2 = 0
 var weight_enemy3 = 0
 var level = 1
 
-
-
-
 var enemy_list = [
 	{ "path": "res://Actors/Enemy.tscn", "weight": 0 }, #CALVO
 	{ "path": "res://Actors/Enemy2.tscn", "weight": 0 }, #ROBOT
 	{ "path": "res://Actors/Enemy3.tscn", "weight": 0 }  #ZOMBIE
 ]
 
-
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GlobalSignals.connect("bullet_fired", bullet_manager, "handle_bullet_spawned")
 	player.connect("respawn_player", self, "clear_enemies")
+	#Se agregan el jugador al canvas :D
+	gui.set_player(player)
+	
 	base.connect("change_difficulty", self, "increase_difficulty")
 	level_configuration(level)
-	$SpawnTimer.start()
+	spawn_timer.start()
+	spawn_timer.connect("timeout", gui, "_on_Timer_timeout")
+	
 	
 
 func _on_SpawnTimer_timeout():
@@ -59,7 +58,7 @@ func _on_SpawnTimer_timeout():
 	var chosen_location = spawn_locations[randi() % spawn_locations.size()]
 	
 	enemy_instance.position = chosen_location.position  
-	$SpawnTimer.start()  
+	spawn_timer.start()  
 	
 func clear_enemies():
 	for enemy in get_tree().get_nodes_in_group("enemy"):
@@ -72,7 +71,7 @@ func level_configuration(level: int):
 			enemy_list[0]["weight"] = 0
 			enemy_list[1]["weight"] = 0
 			enemy_list[2]["weight"] = 15
-			$SpawnTimer.wait_time = 2.5
+			spawn_timer.wait_time = 2.5
 			back_music_level1.pitch_scale = 0.95
 			back_music_level1.play()
 			
@@ -80,21 +79,20 @@ func level_configuration(level: int):
 			enemy_list[0]["weight"] = 3
 			enemy_list[1]["weight"] = 1
 			enemy_list[2]["weight"] = 10
-			$SpawnTimer.wait_time = 2
+			spawn_timer.wait_time = 2
 		3:
 			enemy_list[0]["weight"] = 5
 			enemy_list[1]["weight"] = 3
 			enemy_list[2]["weight"] = 15
-			$SpawnTimer.wait_time = 1
+			spawn_timer.wait_time = 1
 	
 	
 	
 func increase_difficulty(baseTimer: int):
 	var decrease_timer = 0.5
 	
-	
-	if $SpawnTimer.wait_time - decrease_timer != 0:
-		$SpawnTimer.wait_time -= decrease_timer
+	if spawn_timer.wait_time - decrease_timer != 0:
+		spawn_timer.wait_time -= decrease_timer
 		
 	if baseTimer <= 60:
 		
@@ -102,6 +100,7 @@ func increase_difficulty(baseTimer: int):
 		back_music_level1.pitch_scale = 1
 	
 	if baseTimer <= 30:
+		
 		enemy_list[1]["weight"] = 3
 		back_music_level1.pitch_scale = 1.05
 	

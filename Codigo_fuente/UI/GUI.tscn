@@ -1,0 +1,185 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/fonts/Inconsolata-VariableFont_wdth,wght.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://UI/GUI.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 12
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.266667, 0.47451, 0.290196, 0.866667 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.14902, 0.14902, 0.14902, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.14902, 0.14902, 0.14902, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 12.0
+margin_top = 12.0
+margin_right = -12.0
+margin_bottom = -12.0
+mouse_filter = 2
+
+[node name="Rows" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 1000.0
+margin_bottom = 576.0
+mouse_filter = 2
+
+[node name="TopRow" type="HBoxContainer" parent="MarginContainer/Rows"]
+margin_right = 1000.0
+margin_bottom = 40.0
+mouse_filter = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/Rows/TopRow"]
+margin_right = 153.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+
+[node name="CurrentLifes" type="Label" parent="MarginContainer/Rows/TopRow/HBoxContainer3"]
+margin_top = 13.0
+margin_right = 8.0
+margin_bottom = 27.0
+text = "3"
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/Rows/TopRow/HBoxContainer3"]
+margin_left = 12.0
+margin_right = 16.0
+margin_bottom = 40.0
+mouse_filter = 2
+
+[node name="MaxLifes" type="Label" parent="MarginContainer/Rows/TopRow/HBoxContainer3"]
+margin_left = 20.0
+margin_top = 13.0
+margin_right = 28.0
+margin_bottom = 27.0
+text = "3"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/Rows/TopRow"]
+margin_left = 157.0
+margin_right = 842.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.48
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Rows/TopRow/HBoxContainer2"]
+margin_right = 685.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/Rows/TopRow/HBoxContainer2/CenterContainer"]
+visible = false
+margin_left = 250.0
+margin_right = 434.0
+margin_bottom = 39.0
+custom_colors/font_color = Color( 0.992157, 0.027451, 0.027451, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Nueva Horda de Enemigos
+En camino!!!"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Rows/TopRow"]
+margin_left = 846.0
+margin_right = 1000.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="TimeCounter" type="Label" parent="MarginContainer/Rows/TopRow/HBoxContainer"]
+margin_left = 146.0
+margin_top = 13.0
+margin_right = 154.0
+margin_bottom = 27.0
+text = "0"
+
+[node name="MiddleRow" type="HBoxContainer" parent="MarginContainer/Rows"]
+margin_top = 44.0
+margin_right = 1000.0
+margin_bottom = 531.0
+mouse_filter = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 12.0
+alignment = 2
+
+[node name="BottomRow" type="HBoxContainer" parent="MarginContainer/Rows"]
+margin_top = 535.0
+margin_right = 1000.0
+margin_bottom = 576.0
+rect_min_size = Vector2( 0, 20 )
+mouse_filter = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Rows/BottomRow"]
+margin_right = 438.0
+margin_bottom = 41.0
+mouse_filter = 2
+size_flags_horizontal = 3
+
+[node name="HealtBar" type="ProgressBar" parent="MarginContainer/Rows/BottomRow/HBoxContainer"]
+margin_right = 150.0
+margin_bottom = 41.0
+rect_min_size = Vector2( 150, 20 )
+mouse_filter = 2
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 1 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+value = 100.0
+percent_visible = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/Rows/BottomRow"]
+margin_left = 442.0
+margin_right = 881.0
+margin_bottom = 41.0
+mouse_filter = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/Rows/BottomRow"]
+margin_left = 885.0
+margin_right = 1000.0
+margin_bottom = 41.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.26
+alignment = 2
+
+[node name="CurrentAmmo" type="Label" parent="MarginContainer/Rows/BottomRow/HBoxContainer3"]
+margin_left = 71.0
+margin_top = 13.0
+margin_right = 87.0
+margin_bottom = 27.0
+text = "30"
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/Rows/BottomRow/HBoxContainer3"]
+margin_left = 91.0
+margin_right = 95.0
+margin_bottom = 41.0
+mouse_filter = 2
+
+[node name="MaxAmmo" type="Label" parent="MarginContainer/Rows/BottomRow/HBoxContainer3"]
+margin_left = 99.0
+margin_top = 13.0
+margin_right = 115.0
+margin_bottom = 27.0
+text = "10"
