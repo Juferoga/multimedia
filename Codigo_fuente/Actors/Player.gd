@@ -18,8 +18,11 @@ onready var pain_sounds = $PainSounds
 
 
 signal respawn_player
-
-
+signal player_health_changed(new_health)
+signal player_current_ammo_changed(new_current_ammo)
+signal player_max_ammo_changed(new_max_ammo)
+signal player_current_lifes_changed(new_current_lifes)
+signal player_max_lifes_changed(new_max_lifes)
 
 
 func _ready():
@@ -27,6 +30,12 @@ func _ready():
 	weapon.initialize(team.team)
 	weapon.connect("reload_started", self, "_on_reload_started")
 	weapon.connect("reload_finished", self, "_on_reload_finished")
+	## Inicializa las variables de munición actual y total
+	emit_signal("player_health_changed", health_stat.health)
+	emit_signal("player_current_ammo_changed", weapon.current_ammo)
+	emit_signal("player_max_ammo_changed", weapon.max_ammo)
+	emit_signal( "player_current_lifes_changed", lives)
+	emit_signal( "player_max_lifes_changed", lives)
 
 func _on_reload_started():
 	is_reloading = true
@@ -55,13 +64,15 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot") and not is_reloading:
 		weapon.shoot()
 		
-		
 	elif event.is_action_released("reload") and not is_reloading:
 		weapon.start_reload()
+	
+	emit_signal("player_current_ammo_changed", weapon.current_ammo)
 
 	
 func handle_hit():
 	health_stat.health -= 20
+	emit_signal("player_health_changed", health_stat.health)
 	if health_stat.health <= 0:
 		lose_life()
 	else:
@@ -79,6 +90,7 @@ func get_team() -> int:
 	
 func lose_life():
 	lives -= 1
+	emit_signal( "player_current_lifes_changed", lives)
 	if lives <= 0:
 		# Aquí se realizarían las acciones para cuando el jugador se queda sin vidas, como reiniciar el nivel o mostrar una pantalla de game over
 		player_death()
@@ -86,6 +98,7 @@ func lose_life():
 	else:
 		# Aquí se realizarían las acciones para cuando el jugador pierde una vida pero aún tiene vidas restantes, como reiniciar la posición del jugador o reiniciar la escena
 		health_stat.health = 100
+		emit_signal("player_health_changed", health_stat.health)
 		global_position = initial_position
 		emit_signal("respawn_player")
 		print("Lost a life, remaining lives:", lives)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Actors/SpawnLocation.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Assets/topdown-shooter/Tilesheet/tilesheet_complete.png" type="Texture" id=5]
 [ext_resource path="res://Map/Base.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Sounds/Music/boss.ogg" type="AudioStream" id=7]
+[ext_resource path="res://UI/GUI.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=55]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -1024,5 +1025,7 @@ position = Vector2( 191.37, -175.847 )
 [node name="BackMusicLevel1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 volume_db = -25.0
+
+[node name="GUI" parent="." instance=ExtResource( 8 )]
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
