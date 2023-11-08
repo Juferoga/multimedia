@@ -14,6 +14,7 @@ var seconds_change_difficulty_interval = 30
 var seconds_change_difficulty_total = seconds_change_difficulty_interval
 
 signal change_difficulty
+signal base_captured
 
 func _ready():
 	pass
@@ -39,6 +40,7 @@ func _on_BaseTimer_timeout():
 	sprite.modulate = base_color
 	base_timer.stop()
 	captured_sound.playing = true
+	emit_signal("base_captured")
 
 
 var tiempoantes = 0

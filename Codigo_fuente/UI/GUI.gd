@@ -26,7 +26,7 @@ func set_player(new_player:Player):
 	player.connect("player_current_lifes_changed", self, "set_current_lifes")
 	player.connect("player_max_lifes_changed", self, "set_max_lifes")
 	# Tiempo
-	player.connect("time_counter_changed", self, "set_time_counter")
+	#player.connect("time_counter_changed", self, "set_time_counter")
 
 func set_new_health_value(new_healht: int):
 	health_bar.value = new_healht

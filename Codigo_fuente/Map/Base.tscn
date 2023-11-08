@@ -28,8 +28,7 @@ wait_time = 90.0
 
 [node name="CaputreBaseSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
-volume_db = 0.191
-pitch_scale = 0.96
+volume_db = -10.0
 
 [connection signal="body_entered" from="." to="." method="_on_Base_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Base_body_exited"]
