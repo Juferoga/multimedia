@@ -74,6 +74,8 @@ func _attack() -> void:
 	current_cooldown = attack_cooldown
 
 func _process(delta: float) -> void:
+	if is_diyng == false:
+		attack_animation.play("MoveSlime")
 	if attacking and current_cooldown > 0.0:
 		current_cooldown -= delta
 	else:

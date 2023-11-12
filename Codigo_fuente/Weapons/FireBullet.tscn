@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/FinalBoss/Demon/All_Fire_Bullet_Pixel_16x16.png" type="Texture" id=1]
+[ext_resource path="res://Weapons/Bullet.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 2.25, 5.125 )
+
+[node name="FireBullet" type="Area2D"]
+rotation = 1.5708
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, 1.90735e-06 )
+rotation = -1.57128
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 468.494, 324.9, 23.8393, 22.8176 )
+
+[node name="KillTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
+[connection signal="timeout" from="KillTimer" to="." method="_on_KillTimer_timeout"]

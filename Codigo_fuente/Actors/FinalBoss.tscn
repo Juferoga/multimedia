@@ -1,16 +1,71 @@
 [gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://Actors/FinalBoss.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Health.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/topdown-shooter/Spritesheet/spritesheet_characters.png" type="Texture" id=3]
+[ext_resource path="res://Assets/FinalBoss/Demon/demon.png" type="Texture" id=3]
 [ext_resource path="res://Weapons/WeaponBoss.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Actors/IA.gd" type="Script" id=5]
 [ext_resource path="res://Actors/Team.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/kenney_topdowntanksredux/Spritesheet/onlyObjects_default.png" type="Texture" id=7]
 [ext_resource path="res://Sounds/DeathEnemy.mp3" type="AudioStream" id=8]
 
+[sub_resource type="GDScript" id=7]
+script/source = "extends KinematicBody2D
+
+onready var health_stat = $Health
+onready var ia = $IA
+onready var weapon: Weapon = $Weapon
+onready var team = $Team
+onready var attack_animation = $AnimationPlayer
+onready var death_sound = $DeathSound2
+onready var spawn_timer = $SpawnTimer
+
+var is_diyng = false 
+
+
+
+func _ready() -> void: 
+	ia.initialize(self, weapon)
+	weapon.initialize(team.team)
+	spawn_timer.start()
+
+func handle_hit():
+	health_stat.health -= 100
+	if health_stat.health <= 0:
+		is_diyng = true
+		attack_animation.play(\"DeathAnimation\")
+		death_sound.play()
+	
+func get_team() -> int:
+	return team.team
+
+func _on_animation_finished():
+	queue_free()
+	
+	
+	
+func _on_SpawnTimer_timeout():
+	print(\"Timeout\")
+	var selected_enemy_path = \"res://Actors/Slime.tscn\"
+	
+	var enemy_instance = load(selected_enemy_path).instance()
+	
+	var spawn_locations = get_tree().get_nodes_in_group(\"spawn\") 
+	var chosen_location = spawn_locations[randi() % spawn_locations.size()]
+	
+	# Obtén el nodo padre del enemigo principal
+	var enemy_parent = get_parent()
+
+	# Configura la posición en el mundo en lugar de la posición local
+	enemy_instance.global_position = chosen_location.global_position  
+
+	# Agrega el enemigo al mismo nivel en el árbol de nodos que el enemigo principal
+	enemy_parent.add_child(enemy_instance)
+	
+	spawn_timer.start()  
+"
+
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 14.5, 19.5 )
+extents = Vector2( 26, 48.5 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 876.002, 1220 )
@@ -259,20 +314,21 @@ tracks/5/keys = {
 [node name="Enemy" type="KinematicBody2D" groups=["enemy"]]
 position = Vector2( 157, -1010 )
 rotation = 1.57079
-script = ExtResource( 1 )
+script = SubResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.9, 0.9 )
+position = Vector2( -18.4293, -0.0565796 )
+rotation = 1.56971
+scale = Vector2( 1.75869, 1.59373 )
 texture = ExtResource( 3 )
 region_enabled = true
-region_rect = Rect2( 428.433, 130.618, 27.8712, 46.0728 )
+region_rect = Rect2( 0.580978, 5.42697, 62.4224, 58.0333 )
 
 [node name="Weapon" parent="." instance=ExtResource( 4 )]
-position = Vector2( 10, 6.10352e-05 )
+position = Vector2( 27, 1.00017 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 1.5, 1.52588e-05 )
+position = Vector2( -26, -0.000167847 )
 shape = SubResource( 1 )
 
 [node name="Health" parent="." instance=ExtResource( 2 )]
@@ -317,12 +373,12 @@ volume_db = -28.0
 pitch_scale = 2.5
 
 [node name="Position2D2" type="Position2D" parent="." groups=["spawn"]]
-position = Vector2( -3.99585, -30.438 )
+position = Vector2( -3.99622, -99.4509 )
 rotation = 3.14159
 scale = Vector2( 8.16275e+12, 1.58131e+13 )
 
 [node name="Position2D" type="Position2D" parent="." groups=["spawn"]]
-position = Vector2( -4.49475, 36.3191 )
+position = Vector2( -4.97595, 105.308 )
 scale = Vector2( 3.10293e+07, -5.90582e+07 )
 
 [node name="SpawnTimer" type="Timer" parent="."]

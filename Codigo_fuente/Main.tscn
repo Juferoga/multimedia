@@ -801,7 +801,7 @@ position = Vector2( 87.7114, -23.9791 )
 script = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 156, -1016 )
+position = Vector2( 188.312, 782.811 )
 rotation = 1.57079
 
 [node name="Camera2D" type="Camera2D" parent="Player"]

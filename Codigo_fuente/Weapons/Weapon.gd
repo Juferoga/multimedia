@@ -45,6 +45,7 @@ func _stop_reload():
 
 func shoot():
 	if current_ammo != 0 and attack_cooldown.is_stopped() and Bullet	 != null:	
+		print("shoot")
 		var bullet_instance = Bullet.instance()
 		var direction = (gun_direction.global_position - end_of_gun.global_position).normalized()
 		GlobalSignals.emit_signal("bullet_fired", bullet_instance, team,  end_of_gun.global_position, direction)
