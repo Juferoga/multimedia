@@ -4,7 +4,7 @@
 [ext_resource path="res://Actors/Health.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/FinalBoss/Demon/demon.png" type="Texture" id=3]
 [ext_resource path="res://Weapons/Weapon.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Actors/IA.gd" type="Script" id=5]
+[ext_resource path="res://Actors/IABoss.gd" type="Script" id=5]
 [ext_resource path="res://Actors/Team.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/kenney_topdowntanksredux/Spritesheet/onlyObjects_default.png" type="Texture" id=7]
 [ext_resource path="res://Sounds/DeathEnemy.mp3" type="AudioStream" id=8]
@@ -98,14 +98,14 @@ position = Vector2( 23.9999, 12.0002 )
 visible = false
 position = Vector2( 0, -1.52588e-05 )
 
-[node name="IA" type="Node2D" parent="."]
+[node name="IABoss" type="Node2D" parent="."]
 visible = false
 script = ExtResource( 5 )
 
-[node name="PlayerDetection" type="Area2D" parent="IA"]
+[node name="PlayerDetection" type="Area2D" parent="IABoss"]
 visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="IA/PlayerDetection"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="IABoss/PlayerDetection"]
 visible = false
 position = Vector2( 111.996, 44.0028 )
 shape = SubResource( 2 )
@@ -145,5 +145,5 @@ scale = Vector2( 3.10293e+07, -5.90582e+07 )
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 2.0
 
-[connection signal="body_entered" from="IA/PlayerDetection" to="IA" method="_on_PlayerDetection_body_entered"]
+[connection signal="body_entered" from="IABoss/PlayerDetection" to="IABoss" method="_on_PlayerDetection_body_entered"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]

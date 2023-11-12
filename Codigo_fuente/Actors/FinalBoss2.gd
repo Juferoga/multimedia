@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 onready var health_stat = $Health
-onready var ia = $IA
+onready var ia = $IABoss
 onready var weapon: Weapon = $Weapon
 onready var team = $Team
 onready var attack_animation = $AnimationPlayer
