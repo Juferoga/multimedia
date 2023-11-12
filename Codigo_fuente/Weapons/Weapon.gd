@@ -19,7 +19,7 @@ onready var attack_cooldown = $AttackCooldown
 onready var animation_player = $AnimationPlayer
 onready var gun_flash = $GunFlash
 onready var gun_reload_sound = $GunReloadSound
-#onready var gun_shoot = $GunShoot
+onready var gun_shoot = $GunShoot
 
 
 func _ready() -> void: 
@@ -33,6 +33,7 @@ func initialize(team: int):
 
 func start_reload():
 	emit_signal("reload_started")
+	print("Reload")
 	animation_player.play("Reload")
 	gun_reload_sound.play() 
 	
@@ -50,6 +51,7 @@ func shoot():
 		attack_cooldown.start()
 		animation_player.play("GunFlash")
 		#print("Gunshoot") #Aqui deberia ir el sondo supongo lptm
+		gun_shoot.play()
 		current_ammo -= 1
 		
 			

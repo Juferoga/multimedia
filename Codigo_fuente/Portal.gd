@@ -14,7 +14,8 @@ func _ready():
 		print("Node 'Base' not found.")
 	
 func _on_Portal_body_entered(body):
-	if body.is_in_group("player") and var_base_captured == true:
+	#and var_base_captured == true
+	if body.is_in_group("player") :
 		get_tree().change_scene("res://scene2.tscn")
 		
 		

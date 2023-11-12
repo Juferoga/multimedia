@@ -13,13 +13,22 @@ var current_state: int  = State.PATROL setget set_state
 var player: Player = null 
 var weapon: Weapon = null
 var actor = null
+var is_reloading = false
 
 var movement_direction := Vector2.ZERO	
 export (int) var speed = 100
 
 
 func _ready():
+	#weapon.connect("reload_started", self, "_on_reload_started")
+	#weapon.connect("reload_finished", self, "_on_reload_finished")
 	pass
+	
+func _on_reload_started():
+	is_reloading = true
+
+func _on_reload_finished():
+	is_reloading = false
 
 
 func _process(delta: float) -> void:
@@ -33,7 +42,8 @@ func _process(delta: float) -> void:
 				movement_direction = movement_direction.normalized() 
 				actor.move_and_slide(movement_direction * speed)
 				weapon.shoot() 
-				if weapon.current_ammo == 0:
+				#and not is_reloading
+				if weapon.current_ammo == 0 :
 					weapon.start_reload()
 			else:
 				#print("In the ENGAGE state but no weapon/players")
