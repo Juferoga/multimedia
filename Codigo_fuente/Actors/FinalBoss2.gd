@@ -18,10 +18,13 @@ func _ready() -> void:
 	spawn_timer.start()
 
 func handle_hit():
-	health_stat.health -= 1
+	health_stat.health -= 5
+	#Diferentes fases por vida
+	if health_stat.health == 50: 
+		attack_animation.play("DeathAnimation")
 	if health_stat.health <= 0:
 		is_diyng = true
-		attack_animation.play("DeathAnimation")
+		attack_animation.play("")
 		death_sound.play()
 	
 func get_team() -> int:

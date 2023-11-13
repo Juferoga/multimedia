@@ -319,7 +319,7 @@ script = SubResource( 7 )
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -18.4293, -0.0565796 )
 rotation = 1.56971
-scale = Vector2( 1.75869, 1.59373 )
+scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 0.580978, 5.42697, 62.4224, 58.0333 )
