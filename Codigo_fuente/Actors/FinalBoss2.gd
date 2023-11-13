@@ -21,10 +21,10 @@ func handle_hit():
 	health_stat.health -= 5
 	#Diferentes fases por vida
 	if health_stat.health == 50: 
-		attack_animation.play("DeathAnimation")
+		attack_animation.play("Fase1")
 	if health_stat.health <= 0:
 		is_diyng = true
-		attack_animation.play("")
+		attack_animation.play("DeathAnimation")
 		death_sound.play()
 	
 func get_team() -> int:
