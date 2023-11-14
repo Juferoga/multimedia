@@ -4,7 +4,7 @@ onready var health_stat = $Health
 onready var ia3 = $IA3
 onready var team = $Team
 onready var attack = $AttackZone
-onready var attack_sound = $AttackSound
+onready var attack_sound = $AttackSoundSlime
 onready var attack_animation = $AnimationPlayer
 onready var death_sound = $DeathSound
 onready var sprite = $Sprite
@@ -68,7 +68,7 @@ func _attack() -> void:
 			#Sonido
 			#attack_animation.play("AnimationAttack")
 			attack_sound.play()
-			
+			print("entra")
 			
 			
 	current_cooldown = attack_cooldown

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Actors/FinalBoss2.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Health.tscn" type="PackedScene" id=2]
@@ -19,9 +19,33 @@ extents = Vector2( 29.7501, 48 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 876.002, 1220 )
 
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 3 )
+region = Rect2( 195.703, 320.216, 60.504, 64.9157 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 3 )
+region = Rect2( 70.5356, 319.377, 57.2637, 64.247 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 3 )
+region = Rect2( 259.012, 320.204, 60.3549, 66.5452 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 3 )
+region = Rect2( 324.305, 319.879, 61.7477, 65.4232 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 3 )
+region = Rect2( 134.25, 319.693, 57, 63.5574 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 3 )
+region = Rect2( 386.065, 320.281, 64.247, 66.342 )
+
 [sub_resource type="Animation" id=3]
 resource_name = "DeathAnimation"
-length = 0.15
+length = 0.9
 step = 0.01
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -30,7 +54,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.15 ),
+"times": PoolRealArray( 0.5 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -38,28 +62,40 @@ tracks/0/keys = {
 } ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("DeathSound2/DeathFlash:visible")
+tracks/1/path = NodePath("Sprite2:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.07, 0.15 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.03, 0.06, 0.09, 0.12, 0.15, 0.18, 0.2, 0.23, 0.26, 0.29, 0.32, 0.35, 0.38, 0.41, 0.45, 0.451, 0.48, 0.51, 0.54, 0.57, 0.6, 0.63, 0.65, 0.68, 0.71, 0.74, 0.77, 0.8, 0.83, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ false, true, false ]
+"values": [ SubResource( 15 ), SubResource( 13 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 14 ), SubResource( 15 ), SubResource( 15 ), SubResource( 13 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 14 ), SubResource( 15 ), SubResource( 18 ), SubResource( 15 ), SubResource( 15 ), SubResource( 13 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 14 ), SubResource( 15 ), SubResource( 15 ), SubResource( 13 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 14 ), SubResource( 15 ), SubResource( 18 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("DeathSound2/DeathFlash:scale")
+tracks/2/path = NodePath("Sprite2:flip_h")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.15 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.14, 0.31, 0.45, 0.61, 0.77, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite2:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.22, 0.43, 0.66, 0.9, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0.3, 0.3 ), Vector2( 0.1, 0.3 ) ]
+"values": [ 90.0002, 180.0, -270.0, 0.0, 90.0, 180.0 ]
 }
 
 [sub_resource type="AtlasTexture" id=10]
@@ -133,6 +169,7 @@ position = Vector2( -18.4293, -0.0565643 )
 rotation = 1.5708
 scale = Vector2( 1.75869, 1.59373 )
 texture = SubResource( 5 )
+flip_h = true
 region_enabled = true
 region_rect = Rect2( 0.580978, -0.716406, 62.4224, 54.4161 )
 
@@ -182,7 +219,7 @@ pitch_scale = 2.5
 [node name="DeathFlash" type="Sprite" parent="DeathSound2"]
 visible = false
 position = Vector2( 2.5752, -1.60938 )
-scale = Vector2( 14.3174, 3.32389 )
+scale = Vector2( 0.1, 0.3 )
 texture = SubResource( 4 )
 
 [node name="Position2D2" type="Position2D" parent="." groups=["spawn"]]

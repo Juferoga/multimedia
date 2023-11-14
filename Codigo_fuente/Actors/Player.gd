@@ -14,6 +14,7 @@ onready var weapon: Weapon = $Weapon
 onready var health_stat = $Health
 onready var team = $Team
 onready var pain_sounds = $PainSounds
+onready var game_over = $GameOver
 
 
 
@@ -92,7 +93,7 @@ func lose_life():
 	lives -= 1
 	emit_signal( "player_current_lifes_changed", lives)
 	if lives <= 0:
-		# Aquí se realizarían las acciones para cuando el jugador se queda sin vidas, como reiniciar el nivel o mostrar una pantalla de game over
+		#game_over.play()
 		player_death()
 		print("Game Over")
 	else:
@@ -106,6 +107,7 @@ func lose_life():
 		# Restaurar la salud del jugador u otras acciones necesarias para reiniciar el estado del jugador
 	
 func player_death():
+	
 	self.visible = false  # Desactiva el renderizado del enemigo
 	self.collision_layer = 0  # Deshabilita la colisión del enemigo
 	self.collision_mask = 0
