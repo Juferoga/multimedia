@@ -96,22 +96,19 @@ custom_constants/separation = 5
 
 [node name="CurrentLifes" type="Label" parent="MarginContainer/Rows/TopRow/HBoxContainer3"]
 margin_top = 14.0
-margin_right = 8.0
 margin_bottom = 28.0
-text = "3"
 
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/Rows/TopRow/HBoxContainer3"]
-margin_left = 13.0
-margin_right = 17.0
+margin_left = 5.0
+margin_right = 9.0
 margin_bottom = 42.0
 mouse_filter = 2
 
 [node name="MaxLifes" type="Label" parent="MarginContainer/Rows/TopRow/HBoxContainer3"]
-margin_left = 22.0
+margin_left = 14.0
 margin_top = 14.0
-margin_right = 30.0
+margin_right = 14.0
 margin_bottom = 28.0
-text = "3"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/Rows/TopRow"]
 margin_left = 157.0

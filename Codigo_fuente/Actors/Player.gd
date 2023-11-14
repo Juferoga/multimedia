@@ -18,7 +18,7 @@ onready var pain_sounds = $PainSounds
 onready var game_over = $GameOver
 onready var lost_life = $LostLife
 
-
+#onready var player_data = get_node("res://Actors/PlayerData.gd")
 
 signal respawn_player
 signal player_health_changed(new_health)
@@ -34,11 +34,18 @@ func _ready():
 	weapon.connect("reload_started", self, "_on_reload_started")
 	weapon.connect("reload_finished", self, "_on_reload_finished")
 	## Inicializa las variables de munición actual y total
+	
+	
+
+func emit_initial_signals():
+	print("Inicializacion de las variables")
+	print("Vidas", lives)
 	emit_signal("player_health_changed", health_stat.health)
 	emit_signal("player_current_ammo_changed", weapon.current_ammo)
 	emit_signal("player_max_ammo_changed", weapon.max_ammo)
-	emit_signal( "player_current_lifes_changed", lives)
-	emit_signal( "player_max_lifes_changed", lives)
+	emit_signal("player_current_lifes_changed", lives)
+	emit_signal("player_max_lifes_changed", lives)
+
 
 func _on_reload_started():
 	is_reloading = true

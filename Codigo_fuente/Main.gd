@@ -21,11 +21,9 @@ var enemy_list = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	gui.set_player(player)
 	GlobalSignals.connect("bullet_fired", bullet_manager, "handle_bullet_spawned")
 	player.connect("respawn_player", self, "clear_enemies")
-	#Se agregan el jugador al canvas :D
-	gui.set_player(player)
-	
 	base.connect("change_difficulty", self, "increase_difficulty")
 	level_configuration(level)
 	spawn_timer.start()

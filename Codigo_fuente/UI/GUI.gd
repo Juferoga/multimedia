@@ -27,6 +27,8 @@ func set_player(new_player:Player):
 	player.connect("player_max_lifes_changed", self, "set_max_lifes")
 	# Tiempo
 	#player.connect("time_counter_changed", self, "set_time_counter")
+	if player != null:
+		player.emit_initial_signals()
 
 func set_new_health_value(new_healht: int):
 	health_bar.value = new_healht
@@ -38,6 +40,7 @@ func set_max_ammo(new_max_ammo: int):
 	max_ammo.text = str(new_max_ammo)
 
 func set_current_lifes(new_current_lifes):
+	print("Estableciendo vidas")
 	current_lifes.text = str(new_current_lifes)
 
 func set_max_lifes(new_max_lifes):
