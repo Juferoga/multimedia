@@ -7,9 +7,13 @@ class_name Player
 export (int) var speed = 250
 
 var is_reloading = false
-var lives: int = 3
 var initial_position: Vector2
 var is_alive = true
+
+
+var lives: int 
+
+
 
 onready var weapon: Weapon = $Weapon
 onready var health_stat = $Health
@@ -17,6 +21,7 @@ onready var team = $Team
 onready var pain_sounds = $PainSounds
 onready var game_over = $GameOver
 onready var lost_life = $LostLife
+#onready var player_data_node = $PlayerData
 
 #onready var player_data = get_node("res://Actors/PlayerData.gd")
 
@@ -34,6 +39,12 @@ func _ready():
 	weapon.connect("reload_started", self, "_on_reload_started")
 	weapon.connect("reload_finished", self, "_on_reload_finished")
 	## Inicializa las variables de munición actual y total
+	lives = PLAYERDATA.current_lives
+	health_stat.health = PLAYERDATA.player_health
+	
+	#emit_initial_signals()
+	
+	
 	
 	
 
@@ -83,6 +94,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 func handle_hit():
 	health_stat.health -= 20
+	PLAYERDATA.set_health(health_stat.health)
 	emit_signal("player_health_changed", health_stat.health)
 	if health_stat.health <= 0:
 		lose_life()
@@ -101,6 +113,7 @@ func get_team() -> int:
 	
 func lose_life():
 	lives -= 1
+	PLAYERDATA.set_lives(lives)
 	
 	emit_signal( "player_current_lifes_changed", lives)
 	if lives <= 0:
@@ -114,6 +127,7 @@ func lose_life():
 		emit_signal("player_health_changed", health_stat.health)
 		global_position = initial_position
 		emit_signal("respawn_player")
+		PLAYERDATA.set_health(health_stat.health)
 		print("Lost a life, remaining lives:", lives)
 		#Emitir una señal  
 		# Restaurar la salud del jugador u otras acciones necesarias para reiniciar el estado del jugador
