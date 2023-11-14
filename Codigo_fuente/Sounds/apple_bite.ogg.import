@@ -11,5 +11,5 @@ dest_files=[ "res://.import/apple_bite.ogg-3963808777513d95b70844a4482cb160.oggs
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

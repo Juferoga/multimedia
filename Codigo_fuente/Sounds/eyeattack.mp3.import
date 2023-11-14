@@ -11,5 +11,5 @@ dest_files=[ "res://.import/eyeattack.mp3-3a3a588bc78696d510a64b4b33056e13.mp3st
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

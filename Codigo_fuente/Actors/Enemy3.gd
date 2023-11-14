@@ -66,7 +66,7 @@ func _attack() -> void:
 		if target.has_method("handle_hit") and is_diyng != true:
 			target.handle_hit()
 			#Sonido
-			#attack_animation.play("AnimationAttack")
+			attack_animation.play("AnimationAttack")
 			attack_sound.play()
 			
 			

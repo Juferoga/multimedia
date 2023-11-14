@@ -7,6 +7,12 @@ onready var team = $Team
 onready var attack_animation = $AnimationPlayer
 onready var death_sound = $DeathSound2
 onready var spawn_timer = $SpawnTimer
+onready var hit_boss = $hitBoss
+onready var sound_fase2 = $Fase2Sound
+onready var sound_fase3 = $Fase3Sound
+onready var sound_fase4 = $Fase4Sound
+
+
 
 var is_diyng = false 
 
@@ -20,18 +26,20 @@ func _ready() -> void:
 	spawn_timer.start()
 
 func handle_hit():
+	hit_boss.play()
 	health_stat.health -= 2
 	#Diferentes fases por vida
 	if health_stat.health == 76: 
+		sound_fase2.play()
 		attack_animation.play("Fase1")
 		emit_signal("set_fase", health_stat.health)
-		print("Fase 1*")
-		pass
 	if health_stat.health == 50: 
 		attack_animation.play("Fase 2")
+		sound_fase3.play()
 		emit_signal("set_fase", health_stat.health)
 	if health_stat.health == 26: 
-		attack_animation.play("Fase 3")
+		sound_fase4.play()
+		attack_animation.play("Fase 3")		
 		emit_signal("set_fase", health_stat.health)
 		pass
 	if health_stat.health <= 0:
@@ -44,6 +52,15 @@ func get_team() -> int:
 
 func _on_animation_finished():
 	queue_free()
+
+
+	
+func _on_animation_fase_start():
+	get_node("CollisionShape2D").disabled = true
+	
+
+func _on_animation_fase_finished():
+	get_node("CollisionShape2D").disabled = false
 	
 	
 	

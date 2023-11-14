@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Actors/FinalBoss2.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Health.tscn" type="PackedScene" id=2]
@@ -7,11 +7,16 @@
 [ext_resource path="res://Actors/IABoss.gd" type="Script" id=5]
 [ext_resource path="res://Actors/Team.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/kenney_topdowntanksredux/Spritesheet/onlyObjects_default.png" type="Texture" id=7]
-[ext_resource path="res://Sounds/DeathEnemy.mp3" type="AudioStream" id=8]
+[ext_resource path="res://Sounds/DieBoss.wav" type="AudioStream" id=8]
+[ext_resource path="res://Sounds/hit_final_boss.wav" type="AudioStream" id=9]
+[ext_resource path="res://Sounds/dash.mp3" type="AudioStream" id=10]
+[ext_resource path="res://Sounds/Fase2.wav" type="AudioStream" id=11]
+[ext_resource path="res://Sounds/Fase3.wav" type="AudioStream" id=12]
+[ext_resource path="res://Sounds/Fase4.wav" type="AudioStream" id=13]
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 3 )
-region = Rect2( 1.39472, 7.75684, 60.2974, 53.6955 )
+region = Rect2( 449.577, 191.913, 61.9992, 64.8432 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 29.7501, 48 )
@@ -98,12 +103,17 @@ tracks/3/keys = {
 "values": [ 90.0002, 180.0, -270.0, 0.0, 90.0, 180.0 ]
 }
 
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 3 )
+region = Rect2( 192.753, 256.509, 63.7727, 64.1501 )
+
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 3 )
-region = Rect2( 257.812, 255.83, 61.6011, 63.1411 )
+region = Rect2( 320.676, 256.887, 62.3652, 62.6407 )
 
 [sub_resource type="Animation" id=8]
 resource_name = "Fase 2"
+length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite2:texture")
 tracks/0/interp = 1
@@ -111,18 +121,57 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ SubResource( 10 ) ]
+"values": [ SubResource( 20 ), SubResource( 10 ), SubResource( 20 ), SubResource( 10 ), SubResource( 20 ), SubResource( 10 ), SubResource( 20 ), SubResource( 10 ), SubResource( 20 ), SubResource( 10 ), SubResource( 20 ), SubResource( 10 ), SubResource( 20 ), SubResource( 10 ), SubResource( 20 ), SubResource( 10 ) ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_animation_fase_start"
+}, {
+"args": [  ],
+"method": "_on_animation_fase_finished"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("IABoss")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_animation_fase_start"
+}, {
+"args": [  ],
+"method": "_on_animation_fase_finished"
+} ]
+}
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 3 )
+region = Rect2( 320.688, 258.895, 62.9101, 59.4964 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 3 )
-region = Rect2( 453.324, 256.178, 57.56, 63.6851 )
+region = Rect2( 450.897, 256.178, 59.9865, 63.6851 )
 
 [sub_resource type="Animation" id=9]
 resource_name = "Fase 3"
+length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite2:texture")
 tracks/0/interp = 1
@@ -130,18 +179,53 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ SubResource( 11 ) ]
+"values": [ SubResource( 21 ), SubResource( 11 ), SubResource( 21 ), SubResource( 11 ), SubResource( 21 ), SubResource( 11 ), SubResource( 21 ), SubResource( 11 ), SubResource( 21 ), SubResource( 11 ), SubResource( 21 ), SubResource( 11 ), SubResource( 21 ), SubResource( 11 ), SubResource( 21 ), SubResource( 11 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_animation_fase_start"
+}, {
+"args": [  ],
+"method": "_on_animation_fase_finished"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("IABoss")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_animation_fase_start"
+}, {
+"args": [  ],
+"method": "_on_animation_fase_finished"
+} ]
 }
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=19]
 atlas = ExtResource( 3 )
-region = Rect2( 195.42, 255.011, 58.6762, 65.2623 )
+region = Rect2( 193.304, 253.788, 63.7625, 68.1013 )
 
 [sub_resource type="Animation" id=7]
 resource_name = "Fase1"
+length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite2:texture")
 tracks/0/interp = 1
@@ -149,10 +233,44 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ SubResource( 5 ), SubResource( 6 ) ]
+"values": [ SubResource( 5 ), SubResource( 19 ), SubResource( 5 ), SubResource( 19 ), SubResource( 5 ), SubResource( 19 ), SubResource( 5 ), SubResource( 19 ), SubResource( 5 ), SubResource( 19 ), SubResource( 5 ), SubResource( 19 ), SubResource( 5 ), SubResource( 19 ), SubResource( 5 ), SubResource( 19 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_animation_fase_start"
+}, {
+"args": [  ],
+"method": "_on_animation_fase_finished"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("IABoss")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_animation_fase_start"
+}, {
+"args": [  ],
+"method": "_on_animation_fase_finished"
+} ]
 }
 
 [sub_resource type="AtlasTexture" id=4]
@@ -165,7 +283,7 @@ rotation = 1.57079
 script = ExtResource( 1 )
 
 [node name="Sprite2" type="Sprite" parent="."]
-position = Vector2( -18.4293, -0.0565643 )
+position = Vector2( -23.4775, -1.09784 )
 rotation = 1.5708
 scale = Vector2( 1.75869, 1.59373 )
 texture = SubResource( 5 )
@@ -174,7 +292,7 @@ region_enabled = true
 region_rect = Rect2( 0.580978, -0.716406, 62.4224, 54.4161 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -23.2499, -3.00006 )
+position = Vector2( -34, 0.999786 )
 shape = SubResource( 1 )
 
 [node name="Health" parent="." instance=ExtResource( 2 )]
@@ -196,6 +314,10 @@ visible = false
 position = Vector2( 111.996, 44.0028 )
 shape = SubResource( 2 )
 
+[node name="Dash" type="AudioStreamPlayer2D" parent="IABoss"]
+stream = ExtResource( 10 )
+volume_db = -12.0
+
 [node name="Team" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1, -3.99998 )
 team = 1
@@ -208,13 +330,19 @@ anims/Fase1 = SubResource( 7 )
 
 [node name="DeathTimer" type="Timer" parent="."]
 
+[node name="hitBoss" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( -9.05762, -1.86328 )
+rotation = -1.57079
+scale = Vector2( 0.0209536, 0.0902556 )
+stream = ExtResource( 9 )
+volume_db = -10.0
+
 [node name="DeathSound2" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( -9.05762, -1.86328 )
 rotation = -1.57079
 scale = Vector2( 0.0209536, 0.0902556 )
 stream = ExtResource( 8 )
-volume_db = -28.0
-pitch_scale = 2.5
+volume_db = -5.0
 
 [node name="DeathFlash" type="Sprite" parent="DeathSound2"]
 visible = false
@@ -233,6 +361,18 @@ scale = Vector2( 3.10293e+07, -5.90582e+07 )
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="Fase2Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 11 )
+volume_db = -10.0
+
+[node name="Fase3Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 12 )
+volume_db = -10.0
+
+[node name="Fase4Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 13 )
+volume_db = -10.0
 
 [connection signal="body_entered" from="IABoss/PlayerDetection" to="IABoss" method="_on_PlayerDetection_body_entered"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]

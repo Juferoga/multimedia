@@ -9,12 +9,14 @@ export (int) var speed = 250
 var is_reloading = false
 var lives: int = 3
 var initial_position: Vector2
+var is_alive = true
 
 onready var weapon: Weapon = $Weapon
 onready var health_stat = $Health
 onready var team = $Team
 onready var pain_sounds = $PainSounds
 onready var game_over = $GameOver
+onready var lost_life = $LostLife
 
 
 
@@ -47,14 +49,15 @@ func _on_reload_finished():
 #Función que es llamada cada frame
 func _physics_process(delta: float) -> void:
 	var movement_direction := Vector2.ZERO	
-	if Input.is_action_pressed("up"):
-		movement_direction.y = -1
-	if Input.is_action_pressed("down"):
-		movement_direction.y = 1
-	if Input.is_action_pressed("right"):
-		movement_direction.x = 1
-	if Input.is_action_pressed("left"):
-		movement_direction.x = -1 
+	if is_alive:
+		if Input.is_action_pressed("up"):
+			movement_direction.y = -1
+		if Input.is_action_pressed("down"):
+			movement_direction.y = 1
+		if Input.is_action_pressed("right"):
+			movement_direction.x = 1
+		if Input.is_action_pressed("left"):
+			movement_direction.x = -1 
 	
 	movement_direction = movement_direction.normalized() 
 	move_and_slide(movement_direction * speed)
@@ -62,10 +65,10 @@ func _physics_process(delta: float) -> void:
 	look_at(get_global_mouse_position())
 	
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("shoot") and not is_reloading:
+	if event.is_action_pressed("shoot") and not is_reloading and is_alive:
 		weapon.shoot()
 		
-	elif event.is_action_released("reload") and not is_reloading:
+	elif event.is_action_released("reload") and not is_reloading and is_alive:
 		weapon.start_reload()
 	
 	emit_signal("player_current_ammo_changed", weapon.current_ammo)
@@ -91,13 +94,15 @@ func get_team() -> int:
 	
 func lose_life():
 	lives -= 1
+	
 	emit_signal( "player_current_lifes_changed", lives)
 	if lives <= 0:
-		#game_over.play()
+		game_over.play()
 		player_death()
 		print("Game Over")
 	else:
 		# Aquí se realizarían las acciones para cuando el jugador pierde una vida pero aún tiene vidas restantes, como reiniciar la posición del jugador o reiniciar la escena
+		lost_life.play()
 		health_stat.health = 100
 		emit_signal("player_health_changed", health_stat.health)
 		global_position = initial_position
@@ -107,7 +112,7 @@ func lose_life():
 		# Restaurar la salud del jugador u otras acciones necesarias para reiniciar el estado del jugador
 	
 func player_death():
-	
+	is_alive = false
 	self.visible = false  # Desactiva el renderizado del enemigo
 	self.collision_layer = 0  # Deshabilita la colisión del enemigo
 	self.collision_mask = 0

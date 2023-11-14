@@ -15,6 +15,7 @@ enum MoveState {
 }
 
 onready var player_detection = $PlayerDetection
+onready var dash_sound = $Dash
 
 var current_state: int  = State.PATROL setget set_state
 var current_move_state: int = MoveState.ENGAGE_DIRECT setget set_move_state
@@ -22,6 +23,8 @@ var player: Player = null
 var weapon: Weapon = null
 var actor = null
 var is_reloading = false
+var is_last_stage = false
+var is_in_animation = false
 
 var last_move_state: int = MoveState.ENGAGE_DIRECT
 
@@ -49,17 +52,20 @@ func _fase_state(health: int):
 	if health == 76:
 		speed = 175
 		dash_speed = 600
-		print("Señal fase 2")
+		move_state_timer.wait_time = 4.0
+		
 	elif health == 50:
 		speed = 230
 		dash_speed = 700
-		print("Señal fase 3")
+		move_state_timer.wait_time = 3.0
+		
 		
 	elif health == 26:
 		speed = 300
 		dash_speed = 800
+		move_state_timer.wait_time = 2.0
+		is_last_stage = true
 		
-		print("Señal fase 4")
 	
   
 
@@ -80,16 +86,18 @@ func _process(delta: float) -> void:
 		State.ENGAGE:
 			if player != null and weapon != null:
 				# Llama a la función de movimiento actual
-				move_pattern()
-				weapon.shoot() 
-				if weapon.current_ammo == 0 :
-					weapon.start_reload()
+				if is_in_animation == false:
+					move_pattern()
+					weapon.shoot() 
+					if weapon.current_ammo == 0 :
+						weapon.start_reload()
 			else:
 				pass
 		_:
 			print("Error: estado de enemigo desconocido")
 
 func move_pattern(): 
+	
 	match current_move_state:
 		MoveState.ENGAGE_DIRECT:
 			engage_direct_movement()
@@ -101,18 +109,25 @@ func move_pattern():
 			engage_side_to_side_movement()
 		_:
 			print("Error: subestado de enemigo desconocido")
-			
+	
+		
 func set_move_state_random():
 	var move_states = MoveState.values()
 	var random_state = move_states[randi() % move_states.size()]
-	
+	#print("Primer random", random_state)
+	#print("Last move state", last_move_state)
 	# Verifica si el nuevo estado aleatorio es igual al estado anterior
 	# Si lo es, elige otro estado hasta que sea diferente
-	while random_state == last_move_state:
-		random_state = move_states[randi() % move_states.size()]
-	
-	last_move_state = current_move_state
+	if is_last_stage:
+		while random_state == 2 or random_state == last_move_state: 
+			random_state = move_states[randi() % move_states.size()]
+	else: 
+		while random_state == last_move_state:
+			random_state = move_states[randi() % move_states.size()]
+		#print("Genera otro random")
+		
 	current_move_state = random_state
+	last_move_state = current_move_state	
 	#print("Random Move State: ", current_move_state)
 
 
@@ -130,17 +145,25 @@ func engage_direct_movement():
 var dash_duration = 0.5
 var time_since_dash_start = 0.0
 var dash_state = 0
+var first_time_dash = true
+
 
 func engage_dash_movement():
 	if player != null:
+		
 		actor.rotation = actor.global_position.direction_to(player.global_position).angle()
 		movement_direction = global_position.direction_to(player.global_position).normalized()
+		if first_time_dash:
+			dash_sound.play()
+			first_time_dash = false
 		actor.move_and_slide(movement_direction * dash_speed)
+		
 		time_since_dash_start += get_process_delta_time()
 
 		if time_since_dash_start >= dash_duration:
 			time_since_dash_start = 0.0
 			set_move_state_random()  # Cambiar a otro estado después de 1 segundo
+			first_time_dash = true
 
 		
 		
@@ -188,6 +211,7 @@ func set_state(new_state: int):
 
 func set_move_state(new_state: int):
 	# Agrega una condición para evitar configurar el mismo estado de movimiento
+	
 	if new_state == current_move_state:
 		set_move_state_random()  # Cambia el estado si es el mismo que el actual
 	else:
@@ -201,3 +225,12 @@ func _on_PlayerDetection_body_entered(body):
 	if body.is_in_group("player"):
 		set_state(State.ENGAGE)
 		player = body 
+
+
+func _on_animation_fase_start():
+	
+	is_in_animation = true
+	
+
+func _on_animation_fase_finished():
+	is_in_animation = false
