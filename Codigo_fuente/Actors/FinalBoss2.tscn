@@ -3,7 +3,7 @@
 [ext_resource path="res://Actors/FinalBoss2.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Health.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/FinalBoss/Demon/demon.png" type="Texture" id=3]
-[ext_resource path="res://Weapons/Weapon.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Weapons/WeaponBss.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Actors/IABoss.gd" type="Script" id=5]
 [ext_resource path="res://Actors/Team.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/kenney_topdowntanksredux/Spritesheet/onlyObjects_default.png" type="Texture" id=7]
@@ -14,7 +14,7 @@ atlas = ExtResource( 3 )
 region = Rect2( 1.39472, 7.75684, 60.2974, 53.6955 )
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 27.5003, 44.9999 )
+extents = Vector2( 29.7501, 48 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 876.002, 1220 )
@@ -60,18 +60,6 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0.3, 0.3 ), Vector2( 0.1, 0.3 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Weapon:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.01 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
 }
 
 [sub_resource type="AtlasTexture" id=10]
@@ -146,18 +134,18 @@ rotation = 1.5708
 scale = Vector2( 1.75869, 1.59373 )
 texture = SubResource( 5 )
 region_enabled = true
-region_rect = Rect2( 0.580978, 5.42697, 62.4224, 58.0333 )
+region_rect = Rect2( 0.580978, -0.716406, 62.4224, 54.4161 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -10, 1.99994 )
+position = Vector2( -23.2499, -3.00006 )
 shape = SubResource( 1 )
-
-[node name="Weapon" parent="." instance=ExtResource( 4 )]
-position = Vector2( 13, -0.999907 )
 
 [node name="Health" parent="." instance=ExtResource( 2 )]
 visible = false
 position = Vector2( 0, -1.52588e-05 )
+
+[node name="Weapon" parent="." instance=ExtResource( 4 )]
+position = Vector2( -7, -3.00005 )
 
 [node name="IABoss" type="Node2D" parent="."]
 visible = false
@@ -172,6 +160,7 @@ position = Vector2( 111.996, 44.0028 )
 shape = SubResource( 2 )
 
 [node name="Team" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1, -3.99998 )
 team = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -183,7 +172,7 @@ anims/Fase1 = SubResource( 7 )
 [node name="DeathTimer" type="Timer" parent="."]
 
 [node name="DeathSound2" type="AudioStreamPlayer2D" parent="."]
-position = Vector2( 0.232361, -0.162598 )
+position = Vector2( -9.05762, -1.86328 )
 rotation = -1.57079
 scale = Vector2( 0.0209536, 0.0902556 )
 stream = ExtResource( 8 )
