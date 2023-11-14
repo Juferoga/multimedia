@@ -23,6 +23,9 @@ var weapon: Weapon = null
 var actor = null
 var is_reloading = false
 
+var last_move_state: int = MoveState.ENGAGE_DIRECT
+
+
 var dash_speed = 500
 
 var movement_direction := Vector2.ZERO    
@@ -37,6 +40,28 @@ func _ready():
 	move_state_timer.wait_time = 5.0
 	move_state_timer.connect("timeout", self, "_on_move_state_timer_timeout")
 	move_state_timer.start()
+	
+	var final_boss_node = get_parent() 
+	final_boss_node.connect("set_fase", self, "_fase_state")
+	
+
+func _fase_state(health: int):
+	if health == 76:
+		speed = 175
+		dash_speed = 600
+		print("Señal fase 2")
+	elif health == 50:
+		speed = 230
+		dash_speed = 700
+		print("Señal fase 3")
+		
+	elif health == 26:
+		speed = 300
+		dash_speed = 800
+		
+		print("Señal fase 4")
+	
+  
 
 func _on_reload_started():
 	is_reloading = true
@@ -78,13 +103,19 @@ func move_pattern():
 			print("Error: subestado de enemigo desconocido")
 			
 func set_move_state_random():
-	# Obtener el tamaño del enum MoveState
 	var move_states = MoveState.values()
-	
-	# Seleccionar aleatoriamente un estado de movimiento
 	var random_state = move_states[randi() % move_states.size()]
+	
+	# Verifica si el nuevo estado aleatorio es igual al estado anterior
+	# Si lo es, elige otro estado hasta que sea diferente
+	while random_state == last_move_state:
+		random_state = move_states[randi() % move_states.size()]
+	
+	last_move_state = current_move_state
 	current_move_state = random_state
-	print("Random Move State: ", current_move_state)
+	#print("Random Move State: ", current_move_state)
+
+
 
 	
 				
@@ -117,14 +148,14 @@ func engage_dash_movement():
 	
 func engage_random_direction_movement():
 	actor.rotation = actor.global_position.direction_to(player.global_position).angle()
-	print("engage_random_direction_movement")
+	#print("engage_random_direction_movement")
 	pass
 
 
 	
 
 func engage_side_to_side_movement():
-	print("engage_side_to_side_movement")
+	#print("engage_side_to_side_movement")
 
 	if player != null:
 		# Calcular la dirección hacia el jugador
@@ -156,7 +187,11 @@ func set_state(new_state: int):
 	emit_signal("state_changed", current_state)
 
 func set_move_state(new_state: int):
-	pass
+	# Agrega una condición para evitar configurar el mismo estado de movimiento
+	if new_state == current_move_state:
+		set_move_state_random()  # Cambia el estado si es el mismo que el actual
+	else:
+		current_move_state = new_state
 
 func handle_reload():
 	weapon.start_reload()

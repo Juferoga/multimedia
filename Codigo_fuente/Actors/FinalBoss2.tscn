@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Actors/FinalBoss2.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Health.tscn" type="PackedScene" id=2]
@@ -11,7 +11,7 @@
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 3 )
-region = Rect2( 0.745491, 6.11203, 61.1342, 58.6132 )
+region = Rect2( 1.39472, 7.75684, 60.2974, 53.6955 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 27.5003, 44.9999 )
@@ -38,7 +38,7 @@ tracks/0/keys = {
 } ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("DeathFlash:visible")
+tracks/1/path = NodePath("DeathSound2/DeathFlash:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -50,7 +50,7 @@ tracks/1/keys = {
 "values": [ false, true, false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("DeathFlash:scale")
+tracks/2/path = NodePath("DeathSound2/DeathFlash:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -74,9 +74,47 @@ tracks/3/keys = {
 "values": [ true, false ]
 }
 
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 3 )
+region = Rect2( 257.812, 255.83, 61.6011, 63.1411 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "Fase 2"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite2:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 10 ) ]
+}
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 3 )
+region = Rect2( 453.324, 256.178, 57.56, 63.6851 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "Fase 3"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite2:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 11 ) ]
+}
+
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 3 )
-region = Rect2( 322.139, 256.637, 61.601, 64.6811 )
+region = Rect2( 195.42, 255.011, 58.6762, 65.2623 )
 
 [sub_resource type="Animation" id=7]
 resource_name = "Fase1"
@@ -138,6 +176,8 @@ team = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/DeathAnimation = SubResource( 3 )
+"anims/Fase 2" = SubResource( 8 )
+"anims/Fase 3" = SubResource( 9 )
 anims/Fase1 = SubResource( 7 )
 
 [node name="DeathTimer" type="Timer" parent="."]
@@ -150,11 +190,10 @@ stream = ExtResource( 8 )
 volume_db = -28.0
 pitch_scale = 2.5
 
-[node name="DeathFlash" type="Sprite" parent="."]
+[node name="DeathFlash" type="Sprite" parent="DeathSound2"]
 visible = false
-position = Vector2( 0.0871582, -0.216553 )
-rotation = -1.57079
-scale = Vector2( 0.3, 0.3 )
+position = Vector2( 2.5752, -1.60938 )
+scale = Vector2( 14.3174, 3.32389 )
 texture = SubResource( 4 )
 
 [node name="Position2D2" type="Position2D" parent="." groups=["spawn"]]

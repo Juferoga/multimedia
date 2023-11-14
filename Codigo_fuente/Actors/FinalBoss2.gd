@@ -10,6 +10,8 @@ onready var spawn_timer = $SpawnTimer
 
 var is_diyng = false 
 
+signal set_fase
+
 
 
 func _ready() -> void: 
@@ -18,10 +20,20 @@ func _ready() -> void:
 	spawn_timer.start()
 
 func handle_hit():
-	health_stat.health -= 5
+	health_stat.health -= 2
 	#Diferentes fases por vida
-	if health_stat.health == 50: 
+	if health_stat.health == 76: 
 		attack_animation.play("Fase1")
+		emit_signal("set_fase", health_stat.health)
+		print("Fase 1*")
+		pass
+	if health_stat.health == 50: 
+		attack_animation.play("Fase 2")
+		emit_signal("set_fase", health_stat.health)
+	if health_stat.health == 26: 
+		attack_animation.play("Fase 3")
+		emit_signal("set_fase", health_stat.health)
+		pass
 	if health_stat.health <= 0:
 		is_diyng = true
 		attack_animation.play("DeathAnimation")
@@ -36,7 +48,7 @@ func _on_animation_finished():
 	
 	
 func _on_SpawnTimer_timeout():
-	print("Timeout")
+	#print("Timeout")
 	var selected_enemy_path = "res://Actors/Slime.tscn"
 	
 	var enemy_instance = load(selected_enemy_path).instance()
