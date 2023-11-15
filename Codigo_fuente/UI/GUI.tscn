@@ -193,7 +193,7 @@ margin_bottom = 20.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MarginContainer/Rows/BottomRow/HBoxContainer2"]
+[node name="depuracion" type="Label" parent="MarginContainer/Rows/BottomRow/HBoxContainer2"]
 margin_top = 3.0
 margin_right = 65.0
 margin_bottom = 17.0

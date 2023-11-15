@@ -24,6 +24,7 @@ func _ready() -> void:
 	ia.initialize(self, weapon)
 	weapon.initialize(team.team)
 	spawn_timer.start()
+	evaluate_achievements()
 
 func handle_hit():
 	hit_boss.play()
@@ -46,6 +47,8 @@ func handle_hit():
 		is_diyng = true
 		attack_animation.play("DeathAnimation")
 		death_sound.play()
+		#Emitir señal de que el jefe a muerto (?)
+		evaluate_achievements()
 	
 func get_team() -> int:
 	return team.team
@@ -83,3 +86,25 @@ func _on_SpawnTimer_timeout():
 	enemy_parent.add_child(enemy_instance)
 	
 	spawn_timer.start()  
+
+
+func evaluate_achievements():
+	var health = PLAYERDATA.player_health
+	var lives = PLAYERDATA.current_lives
+	
+	if not ACHIEVEMENTS.hasAchievement("no_hit") and health == 100 and lives == 3:
+		print("Unlock no hit")
+		ACHIEVEMENTS.unlockAchievement("no_hit")
+	
+	if not ACHIEVEMENTS.hasAchievement("all_lifes") and lives == 3:
+		ACHIEVEMENTS.unlockAchievement("all_lifes")
+		print("Unlock all lifes")
+	
+	if not ACHIEVEMENTS.hasAchievement("hell_king"):
+		ACHIEVEMENTS.unlockAchievement("hell_king")
+		print("Unlock hell king")
+		
+		
+	ACHIEVEMENTS.saveAchievements()
+
+	

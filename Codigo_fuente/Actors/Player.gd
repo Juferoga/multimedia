@@ -13,6 +13,7 @@ var is_alive = true
 
 var lives: int 
 
+var text
 
 
 onready var weapon: Weapon = $Weapon
@@ -32,6 +33,8 @@ signal player_max_ammo_changed(new_max_ammo)
 signal player_current_lifes_changed(new_current_lifes)
 signal player_max_lifes_changed(new_max_lifes)
 
+#Depuracion 
+signal player_depuracion(new_text)
 
 func _ready():
 	initial_position = global_position
@@ -56,6 +59,7 @@ func emit_initial_signals():
 	emit_signal("player_max_ammo_changed", weapon.max_ammo)
 	emit_signal("player_current_lifes_changed", lives)
 	emit_signal("player_max_lifes_changed", lives)
+	emit_signal("player_depuracion", text)
 
 
 func _on_reload_started():
@@ -88,6 +92,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 	elif event.is_action_released("reload") and not is_reloading and is_alive:
 		weapon.start_reload()
+	
+	if event.is_action_pressed("toggle_debug"):
+		if ACHIEVEMENTS.hasAchievement("no_hit"):
+			text = "No hit conseguido"
+			emit_signal( "player_depuracion", text)
+		else: 
+			text = "No hit NO conseguido"
+			emit_signal( "player_depuracion", text)
+		
+		
 	
 	emit_signal("player_current_ammo_changed", weapon.current_ammo)
 

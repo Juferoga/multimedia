@@ -12,6 +12,8 @@ onready var current_lifes = $MarginContainer/Rows/TopRow/HBoxContainer3/CurrentL
 # Tiempo
 onready var time_counter = $MarginContainer/Rows/TopRow/HBoxContainer/TimeCounter
 
+onready var depuracion = $MarginContainer/Rows/BottomRow/HBoxContainer2/depuracion
+
 var player: Player
 var elapsed_time = 0  # Contador del tiempo transcurrido
 
@@ -25,7 +27,8 @@ func set_player(new_player:Player):
 	# Vidas
 	player.connect("player_current_lifes_changed", self, "set_current_lifes")
 	player.connect("player_max_lifes_changed", self, "set_max_lifes")
-	# Tiempo
+	# Depuracion
+	player.connect("player_depuracion", self, "set_depuracion")
 	#player.connect("time_counter_changed", self, "set_time_counter")
 	if player != null:
 		player.emit_initial_signals()
@@ -59,3 +62,8 @@ func _on_Timer_timeout():
 	elapsed_time += 1  # Aumentamos el contador en uno cada vez que se llama la función
 	set_time_counter(elapsed_time)  # Actualizamos el contador en la UI
 	
+
+#Depuracion 
+
+func set_depuracion(new_text):
+	depuracion.text = str(new_text)
