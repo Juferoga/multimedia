@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Actors/FinalBoss2.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Health.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Sounds/Fase2.wav" type="AudioStream" id=11]
 [ext_resource path="res://Sounds/Fase3.wav" type="AudioStream" id=12]
 [ext_resource path="res://Sounds/Fase4.wav" type="AudioStream" id=13]
+[ext_resource path="res://Sounds/logros.ogg" type="AudioStream" id=14]
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 3 )
@@ -372,6 +373,10 @@ volume_db = -10.0
 
 [node name="Fase4Sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 13 )
+volume_db = -10.0
+
+[node name="AchievementSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
 volume_db = -10.0
 
 [connection signal="body_entered" from="IABoss/PlayerDetection" to="IABoss" method="_on_PlayerDetection_body_entered"]

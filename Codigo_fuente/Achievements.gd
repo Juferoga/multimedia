@@ -19,25 +19,24 @@ func saveAchievements():
 func loadAchievements():
 	var file = File.new()
 	if file.file_exists(path):
-		if file.open(path, File.READ) == OK:
-			var contents = file.get_as_text()
-			file.close()
-			var parsed_achievements = JSON.parse(contents)
-			if parsed_achievements is Dictionary:
-				achievements = parsed_achievements
-				print("Logros cargados correctamente")
-			else:
-				print("Error: Contenido no es un diccionario")
-		else:
-			print("Error al abrir el archivo")
-	else:
-		print("El archivo no existe")
-		saveAchievements()  # Crea un archivo nuevo si no existe
+		file.open(path, File.READ)
+		var contents = file.get_as_text()
+		file.close()
+		achievements = parse_json(contents)
+		if typeof(achievements) != typeof({}):
+			resetAchievements()
+
+func resetAchievements():
+	achievements = {
+		"no_hit": false,
+		"all_lifes": false,
+		"hell_king": false
+	}
 
 func unlockAchievement(name: String):
-	loadAchievements()  # Carga los logros actuales
-	achievements[name] = true  # Actualiza el logro desbloqueado
-	saveAchievements()  # Guarda los logros actualizados
+	if achievements.has(name) and typeof(achievements[name]) == typeof(true):
+		achievements[name] = true
+		saveAchievements()
 
 func hasAchievement(name: String) -> bool:
 	return achievements.has(name) and achievements[name] == true
@@ -47,3 +46,4 @@ func printAchievementStatus(name: String):
 		print(name + ": Conseguido")
 	else:
 		print(name + ": No conseguido")
+

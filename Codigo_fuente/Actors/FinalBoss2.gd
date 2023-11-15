@@ -11,20 +11,20 @@ onready var hit_boss = $hitBoss
 onready var sound_fase2 = $Fase2Sound
 onready var sound_fase3 = $Fase3Sound
 onready var sound_fase4 = $Fase4Sound
-
+onready var achievement_sound = $AchievementSound
 
 
 var is_diyng = false 
 
 signal set_fase
-
+signal player_depuracion(new_text)
 
 
 func _ready() -> void: 
 	ia.initialize(self, weapon)
 	weapon.initialize(team.team)
 	spawn_timer.start()
-	evaluate_achievements()
+	
 
 func handle_hit():
 	hit_boss.play()
@@ -91,19 +91,26 @@ func _on_SpawnTimer_timeout():
 func evaluate_achievements():
 	var health = PLAYERDATA.player_health
 	var lives = PLAYERDATA.current_lives
+	var text
 	
 	if not ACHIEVEMENTS.hasAchievement("no_hit") and health == 100 and lives == 3:
-		print("Unlock no hit")
 		ACHIEVEMENTS.unlockAchievement("no_hit")
-	
+		achievement_sound.play()
+		text = "CONSEGUIDO NO HIT"
+		emit_signal( "player_depuracion", text)
+		print("EMITE SEÑAL")
 	if not ACHIEVEMENTS.hasAchievement("all_lifes") and lives == 3:
 		ACHIEVEMENTS.unlockAchievement("all_lifes")
-		print("Unlock all lifes")
-	
+		achievement_sound.play()	
+		text = "CONSEGUDIO ALL LIFES"
+		emit_signal( "player_depuracion", text)
+		print("EMITE SEÑAL")
 	if not ACHIEVEMENTS.hasAchievement("hell_king"):
 		ACHIEVEMENTS.unlockAchievement("hell_king")
-		print("Unlock hell king")
-		
+		achievement_sound.play()	
+		text = "CONSEGUDIO HELL KING"
+		emit_signal( "player_depuracion", text)
+		print("EMITE SEÑAL")
 		
 	ACHIEVEMENTS.saveAchievements()
 

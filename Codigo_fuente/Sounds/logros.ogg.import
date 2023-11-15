@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/logros.ogg-78596390cd66cb43be468dc533e39bd5.oggstr"
+
+[deps]
+
+source_file="res://Sounds/logros.ogg"
+dest_files=[ "res://.import/logros.ogg-78596390cd66cb43be468dc533e39bd5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
