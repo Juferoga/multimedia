@@ -30,8 +30,14 @@ func set_player(new_player:Player):
 	if player != null:
 		player.emit_initial_signals()
 
-func set_new_health_value(new_healht: int):
-	health_bar.value = new_healht
+func set_new_health_value(new_health: int):
+	health_bar.value = new_health
+	if new_health < 40:
+		health_bar.modulate = Color(1, 0, 0)  # Rojo
+	elif new_health < 80:
+		health_bar.modulate = Color(1, 1, 0)  # Amarillo
+	else:
+		health_bar.modulate = Color(0, 1, 0)  # Verde
 
 func set_current_ammo(new_ammo: int):
 	current_ammo.text = str(new_ammo)
