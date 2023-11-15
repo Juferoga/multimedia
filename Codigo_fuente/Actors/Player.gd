@@ -15,6 +15,8 @@ var lives: int
 
 var text
 
+var player_dead = false
+
 
 onready var weapon: Weapon = $Weapon
 onready var health_stat = $Health
@@ -32,6 +34,7 @@ signal player_current_ammo_changed(new_current_ammo)
 signal player_max_ammo_changed(new_max_ammo)
 signal player_current_lifes_changed(new_current_lifes)
 signal player_max_lifes_changed(new_max_lifes)
+signal is_player_dead 
 
 #Depuracion 
 
@@ -129,6 +132,8 @@ func lose_life():
 		game_over.play()
 		player_death()
 		print("Game Over")
+		var player_dead = true
+		emit_signal("is_player_dead")
 	else:
 		# Aquí se realizarían las acciones para cuando el jugador pierde una vida pero aún tiene vidas restantes, como reiniciar la posición del jugador o reiniciar la escena
 		lost_life.play()

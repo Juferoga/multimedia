@@ -1,9 +1,11 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Assets/fonts/Inconsolata-VariableFont_wdth,wght.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://UI/GUI.gd" type="Script" id=2]
 [ext_resource path="res://Assets/fonts/UncrackedFreeTrial-X3WjK.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://Assets/images/Heart.png" type="Texture" id=4]
+[ext_resource path="res://Assets/FinalBoss/eye fire1.png" type="Texture" id=5]
+[ext_resource path="res://Assets/fonts/Game_OVer.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 4 )
@@ -66,6 +68,10 @@ font_data = ExtResource( 3 )
 size = 25
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=17]
+size = 50
+font_data = ExtResource( 6 )
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource( 2 )
@@ -218,5 +224,23 @@ margin_bottom = 45.0
 custom_fonts/font = SubResource( 16 )
 text = "X 2"
 valign = 1
+
+[node name="Button" type="Button" parent="."]
+margin_left = 821.0
+margin_top = 13.0
+margin_right = 1011.0
+margin_bottom = 55.0
+text = "VOLVER AL MENU"
+icon = ExtResource( 5 )
+align = 0
+
+[node name="GameOver" type="Label" parent="."]
+modulate = Color( 0.384314, 0.0823529, 0.0823529, 1 )
+margin_left = 138.0
+margin_top = 256.0
+margin_right = 876.0
+margin_bottom = 351.0
+custom_fonts/font = SubResource( 17 )
+text = "GAME OVER"
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout_achivement"]

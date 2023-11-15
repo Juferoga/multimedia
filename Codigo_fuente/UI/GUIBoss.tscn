@@ -1,10 +1,13 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Assets/fonts/Inconsolata-VariableFont_wdth,wght.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://UI/GUI.gd" type="Script" id=2]
 [ext_resource path="res://Assets/images/Heart.png" type="Texture" id=3]
 [ext_resource path="res://Assets/fonts/UncrackedFreeTrial-X3WjK.otf" type="DynamicFontData" id=4]
 [ext_resource path="res://Assets/fonts/KnightWarrior-w16n8.otf" type="DynamicFontData" id=5]
+[ext_resource path="res://Assets/FinalBoss/eye fire1.png" type="Texture" id=6]
+[ext_resource path="res://Assets/fonts/Game_OVer.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Assets/fonts/Superado.ttf" type="DynamicFontData" id=8]
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 3 )
@@ -70,6 +73,33 @@ font_data = ExtResource( 4 )
 [sub_resource type="DynamicFont" id=13]
 size = 20
 font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=17]
+size = 50
+font_data = ExtResource( 7 )
+
+[sub_resource type="Shader" id=19]
+code = "
+shader_type canvas_item;
+
+uniform float height = 3.0;
+uniform float frequency = 20.0;
+uniform float speed = 3.0;
+
+void vertex() {
+ VERTEX.y += height * sin((frequency * UV.x) + (speed * TIME));
+}
+"
+
+[sub_resource type="ShaderMaterial" id=20]
+shader = SubResource( 19 )
+shader_param/height = 3.0
+shader_param/frequency = 20.0
+shader_param/speed = 3.0
+
+[sub_resource type="DynamicFont" id=18]
+size = 50
+font_data = ExtResource( 8 )
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource( 2 )
@@ -248,5 +278,34 @@ margin_right = 208.0
 margin_bottom = 589.0
 custom_fonts/font = SubResource( 13 )
 text = "10"
+
+[node name="Button" type="Button" parent="."]
+margin_left = 821.0
+margin_top = 13.0
+margin_right = 1011.0
+margin_bottom = 55.0
+text = "VOLVER AL MENU"
+icon = ExtResource( 6 )
+align = 0
+
+[node name="GameOver" type="Label" parent="."]
+visible = false
+modulate = Color( 0.733333, 0.454902, 0.454902, 1 )
+margin_left = 138.0
+margin_top = 256.0
+margin_right = 876.0
+margin_bottom = 351.0
+custom_fonts/font = SubResource( 17 )
+text = "GAME OVER"
+
+[node name="Complete" type="Label" parent="."]
+modulate = Color( 0.490196, 0.819608, 0.168627, 1 )
+material = SubResource( 20 )
+margin_left = 50.0
+margin_top = 78.0
+margin_right = 975.0
+margin_bottom = 212.0
+custom_fonts/font = SubResource( 18 )
+text = "¡Has superado la prueba!"
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout_achivement"]

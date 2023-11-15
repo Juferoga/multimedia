@@ -16,11 +16,19 @@ onready var logro1 = $MarginContainer/Rows/BottomRow/HBoxContainer2/logro1
 onready var logro2 = $MarginContainer/Rows/BottomRow/HBoxContainer2/logro2
 onready var logro3 = $MarginContainer/Rows/BottomRow/HBoxContainer2/logro3
 
+onready var boton = $Button
+onready var gameover_label = $GameOver
+onready var complete_label = $Complete
+
 
 var player: Player
 var elapsed_time = 0  # Contador del tiempo transcurrido
 
-
+func _ready():
+	boton.visible = false
+	boton.connect("pressed", self, "_on_button_pressed")
+	gameover_label.visible = false
+	complete_label.visible = false
 
 func set_player(new_player:Player):
 	self.player = new_player
@@ -32,14 +40,10 @@ func set_player(new_player:Player):
 	# Vidas
 	player.connect("player_current_lifes_changed", self, "set_current_lifes")
 	player.connect("player_max_lifes_changed", self, "set_max_lifes")
+	
+	player.connect("is_player_dead", self, "_on_player_dead_reset")
 	# Depuracion
-	var parent_node = get_parent()  # Acceder al nodo padre común
-	if parent_node.has_node("FinalBoss"):  # Verificar si el nodo FinalBoss2 está bajo el mismo nodo padre
-		var final_boss = parent_node.get_node("FinalBoss")  # Obtener una referencia al nodo FinalBoss2
-		final_boss.connect("player_depuracion", self, "set_depuracion")
-		
-	else:
-		print("No se encontró el nodo FinalBoss2")
+	
 		
 	#player.connect("time_counter_changed", self, "set_time_counter")
 	if player != null:
@@ -94,4 +98,15 @@ func _on_FinalBoss_player_depuracion(new_text):
 		logro2.text = str("-- ",new_text, " --")	
 	elif new_text == "CONSEGUDIO HELL KING":
 		logro3.text = str("-- ",new_text, " --")	
+	elif new_text ==  "ACTIVAR BOTON":
+		boton.visible = true
+		complete_label.visible = true
 	$Timer.start()
+
+func _on_button_pressed():
+	get_tree().change_scene("res://MenuPrincipal.tscn")
+	PLAYERDATA.reset_data()
+
+func _on_player_dead_reset():
+	boton.visible = true
+	gameover_label.visible = true

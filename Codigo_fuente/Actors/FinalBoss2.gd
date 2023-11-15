@@ -18,13 +18,14 @@ var is_diyng = false
 
 signal set_fase
 signal player_depuracion(new_text)
+signal boss_dead
 
 
 func _ready() -> void: 
 	ia.initialize(self, weapon)
 	weapon.initialize(team.team)
 	spawn_timer.start()
-	
+	#evaluate_achievements()
 
 func handle_hit():
 	hit_boss.play()
@@ -65,38 +66,48 @@ func _on_animation_fase_start():
 func _on_animation_fase_finished():
 	get_node("CollisionShape2D").disabled = false
 	
+func _on_boss_dead():
+	is_diyng = true
+	emit_signal("boss_dead")
+	var enemies = get_tree().get_nodes_in_group("enemy")  # Asegúrate de tener un grupo para los enemigos
+	for enemy in enemies:
+		enemy.queue_free()
 	
 	
 func _on_SpawnTimer_timeout():
 	#print("Timeout")
-	var selected_enemy_path = "res://Actors/Slime.tscn"
-	
-	var enemy_instance = load(selected_enemy_path).instance()
-	
-	var spawn_locations = get_tree().get_nodes_in_group("spawn") 
-	var chosen_location = spawn_locations[randi() % spawn_locations.size()]
-	
-	# Obtén el nodo padre del enemigo principal
-	var enemy_parent = get_parent()
+	if is_diyng == false:
+		var selected_enemy_path = "res://Actors/Slime.tscn"
+		
+		var enemy_instance = load(selected_enemy_path).instance()
+		
+		var spawn_locations = get_tree().get_nodes_in_group("spawn") 
+		var chosen_location = spawn_locations[randi() % spawn_locations.size()]
+		
+		# Obtén el nodo padre del enemigo principal
+		var enemy_parent = get_parent()
 
-	# Configura la posición en el mundo en lugar de la posición local
-	enemy_instance.global_position = chosen_location.global_position  
+		# Configura la posición en el mundo en lugar de la posición local
+		enemy_instance.global_position = chosen_location.global_position  
 
-	# Agrega el enemigo al mismo nivel en el árbol de nodos que el enemigo principal
-	enemy_parent.add_child(enemy_instance)
-	
-	spawn_timer.start()  
+		# Agrega el enemigo al mismo nivel en el árbol de nodos que el enemigo principal
+		enemy_parent.add_child(enemy_instance)
+		
+		spawn_timer.start()  
 
 
 func evaluate_achievements():
 	var health = PLAYERDATA.player_health
 	var lives = PLAYERDATA.current_lives
 	var text
+	text = "ACTIVAR BOTON"
+	emit_signal( "player_depuracion", text)
 	
 	if not ACHIEVEMENTS.hasAchievement("no_hit") and health == 100 and lives == 3:
 		ACHIEVEMENTS.unlockAchievement("no_hit")
 		achievement_sound.play()
 		text = "CONSEGUIDO NO HIT"
+		
 		emit_signal( "player_depuracion", text)
 		print("EMITE SEÑAL")
 	if not ACHIEVEMENTS.hasAchievement("all_lifes") and lives == 3:
@@ -109,7 +120,7 @@ func evaluate_achievements():
 		ACHIEVEMENTS.unlockAchievement("hell_king")
 		achievement_sound.play()	
 		text = "CONSEGUDIO HELL KING"
-		emit_signal( "player_depuracion", text)
+		emit_signal("player_depuracion", text)
 		print("EMITE SEÑAL")
 		
 	ACHIEVEMENTS.saveAchievements()
