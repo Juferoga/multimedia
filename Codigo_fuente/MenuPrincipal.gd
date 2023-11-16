@@ -45,11 +45,9 @@ func _on_animation_end():
 	if btnPlay: 
 		get_tree().change_scene("res://Main.tscn")		
 	elif btnGuia:
-		get_tree().change_scene("res://Guia.tscn")
-		
+		get_tree().change_scene("res://Guia.tscn")		
 	elif btnLogros:
-		get_tree().change_scene("res://Logros.tscn")
-		
+		get_tree().change_scene("res://Logros.tscn")		
 	elif btnMiras: 
 		get_tree().change_scene("res://Crosshair.tscn")
 	
