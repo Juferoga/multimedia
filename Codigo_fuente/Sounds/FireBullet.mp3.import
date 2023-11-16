@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/FireBullet.mp3-3393e3f2924051af5e67b62cdf8e76f1.mp3str"
+
+[deps]
+
+source_file="res://Sounds/FireBullet.mp3"
+dest_files=[ "res://.import/FireBullet.mp3-3393e3f2924051af5e67b62cdf8e76f1.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

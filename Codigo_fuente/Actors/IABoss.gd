@@ -88,7 +88,7 @@ func _process(delta: float) -> void:
 				# Llama a la función de movimiento actual
 				if is_in_animation == false:
 					move_pattern()
-					weapon.shoot(false) 
+					weapon.shoot(false, true) 
 					if weapon.current_ammo == 0 :
 						weapon.start_reload(true)
 			else:

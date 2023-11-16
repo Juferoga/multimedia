@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 				movement_direction = global_position.direction_to(player.global_position)
 				movement_direction = movement_direction.normalized() 
 				actor.move_and_slide(movement_direction * speed)
-				weapon.shoot(false) 
+				weapon.shoot(false, false) 
 				#and not is_reloading
 				if weapon.current_ammo == 0 and enemy.is_reloading == false:
 					
