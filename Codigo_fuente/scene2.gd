@@ -22,6 +22,9 @@ func _ready():
 	# Conectar la señal del nodo hijo a una función en el nodo padre
 	boss_node.connect("boss_dead", self, "_on_boss_dead")
 	
+	var player = get_node("Player")
+	player.connect("is_player_dead", self, "_on_custom_signal_received")
+	
 func _on_boss_dead():
 	backsound_final.stop()
 	sound_dead.play()
@@ -32,3 +35,7 @@ func _on_TiempoAMenu_timeout():
 	#Poner la escena del menu
 	#get_tree().change_scene("res://Main.tscn")
 	pass
+
+func _on_custom_signal_received():
+	backsound_final.stop()
+	$MusicDead.play()

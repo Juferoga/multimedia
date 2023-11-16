@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/What French Hell is This.mp3-825423db407e996050f90d701aa32b61.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Music/What French Hell is This.mp3"
+dest_files=[ "res://.import/What French Hell is This.mp3-825423db407e996050f90d701aa32b61.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

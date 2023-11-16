@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=2]
+[gd_scene load_steps=77 format=2]
 
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://BulletManager.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://UI/GUIBoss.gd" type="Script" id=9]
 [ext_resource path="res://Sounds/rock_breaking.mp3" type="AudioStream" id=10]
 [ext_resource path="res://Sounds/Music/Final_music.mp3" type="AudioStream" id=11]
+[ext_resource path="res://Sounds/Music/What French Hell is This.mp3" type="AudioStream" id=12]
 
 [sub_resource type="TileSet" id=1]
 0/name = "floortileset.png 0"
@@ -1127,6 +1128,10 @@ wait_time = 8.0
 [node name="FinalMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
 volume_db = -10.0
+
+[node name="MusicDead" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -15.0
 
 [connection signal="player_depuracion" from="FinalBoss" to="GUI" method="_on_FinalBoss_player_depuracion"]
 [connection signal="timeout" from="TiempoAMenu" to="." method="_on_TiempoAMenu_timeout"]

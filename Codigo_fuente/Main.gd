@@ -29,6 +29,9 @@ func _ready():
 	spawn_timer.start()
 	spawn_timer.connect("timeout", gui, "_on_Timer_timeout")
 	
+	var player = get_node("Player")
+	player.connect("is_player_dead", self, "_on_custom_signal_received")
+	
 	
 
 func _on_SpawnTimer_timeout():
@@ -102,7 +105,9 @@ func increase_difficulty(baseTimer: int):
 		enemy_list[1]["weight"] = 3
 		back_music_level1.pitch_scale = 1.05
 	
-	
-	
+
+func _on_custom_signal_received():
+	back_music_level1.stop()
+	$MusicDead.play()
 
 	

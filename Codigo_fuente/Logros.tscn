@@ -1,0 +1,171 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Assets/fonts/SamuraiBlast-8MnyD.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/GUI/book.png" type="Texture" id=2]
+[ext_resource path="res://Assets/GUI/HauntedHenhouse_3.jpg" type="Texture" id=3]
+[ext_resource path="res://Logros.gd" type="Script" id=4]
+[ext_resource path="res://Sounds/Menu Selection Click.wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/fonts/CyberDisplay-VGvGx.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Assets/fonts/KnightWarrior-w16n8.otf" type="DynamicFontData" id=7]
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.333333, 0.333333, 0.0196078, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.443137, 0.443137, 0.0196078, 1 )
+border_width_bottom = 5
+border_color = Color( 0.238281, 0.238281, 0.0127983, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color( 0.206055, 0.206055, 0.0110674, 1 )
+shadow_size = 5
+
+[sub_resource type="Theme" id=5]
+Button/styles/hover = SubResource( 4 )
+Button/styles/normal = SubResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 40
+extra_spacing_top = 10
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 30
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 20
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 30
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 30
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 30
+font_data = ExtResource( 6 )
+
+[node name="Logros" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 514, 301.5 )
+scale = Vector2( 0.279348, 0.303931 )
+texture = ExtResource( 3 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 497, 306 )
+scale = Vector2( 0.385258, 0.428858 )
+texture = ExtResource( 2 )
+
+[node name="Volver" type="Button" parent="."]
+margin_left = 23.0
+margin_top = 20.0
+margin_right = 181.0
+margin_bottom = 78.0
+theme = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
+text = "Volver"
+
+[node name="Selection" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 299.0
+margin_top = 153.0
+margin_right = 450.0
+margin_bottom = 186.0
+rect_pivot_offset = Vector2( 91, 22 )
+custom_fonts/font = SubResource( 7 )
+text = "HELL KING"
+
+[node name="Label5" type="Label" parent="."]
+modulate = Color( 0.619608, 0.152941, 0.0588235, 1 )
+margin_left = 299.0
+margin_top = 203.0
+margin_right = 561.0
+margin_bottom = 227.0
+custom_fonts/font = SubResource( 8 )
+text = "DERROTA AL DEMONIO"
+
+[node name="HellKing" type="Label" parent="."]
+modulate = Color( 0.207843, 0.32549, 0.0666667, 1 )
+margin_left = 494.0
+margin_top = 203.0
+margin_right = 774.0
+margin_bottom = 258.0
+custom_fonts/font = SubResource( 9 )
+align = 1
+
+[node name="AllLifes" type="Label" parent="."]
+margin_left = 522.0
+margin_top = 295.0
+margin_right = 747.0
+margin_bottom = 350.0
+custom_fonts/font = SubResource( 10 )
+align = 1
+
+[node name="NoHit" type="Label" parent="."]
+margin_left = 522.0
+margin_top = 391.0
+margin_right = 747.0
+margin_bottom = 446.0
+custom_fonts/font = SubResource( 11 )
+align = 1
+
+[node name="Label2" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 299.0
+margin_top = 242.0
+margin_right = 441.0
+margin_bottom = 275.0
+rect_pivot_offset = Vector2( 91, 22 )
+custom_fonts/font = SubResource( 7 )
+text = "ALL LIFES"
+
+[node name="Label3" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 325.0
+margin_top = 346.0
+margin_right = 426.0
+margin_bottom = 379.0
+rect_pivot_offset = Vector2( 91, 22 )
+custom_fonts/font = SubResource( 7 )
+text = "NO HIT"
+
+[node name="Label7" type="Label" parent="."]
+modulate = Color( 0.619608, 0.152941, 0.0588235, 1 )
+margin_left = 244.0
+margin_top = 283.0
+margin_right = 506.0
+margin_bottom = 334.0
+custom_fonts/font = SubResource( 8 )
+text = "DERROTA AL DEMONIO 
+SIN PERDER NINGUNA VIDA"
+align = 1
+valign = 1
+
+[node name="Label8" type="Label" parent="."]
+modulate = Color( 0.619608, 0.152941, 0.0588235, 1 )
+margin_left = 244.0
+margin_top = 391.0
+margin_right = 506.0
+margin_bottom = 469.0
+custom_fonts/font = SubResource( 8 )
+text = "DERROTA AL DEMONIO 
+SIN RECIBIR NINGUN TIPO 
+DE IMPACTO"
+align = 1
+valign = 1
+
+[connection signal="pressed" from="Volver" to="." method="_on_Volver_pressed"]

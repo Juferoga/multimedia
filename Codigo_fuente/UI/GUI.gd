@@ -13,10 +13,10 @@ onready var current_lifes = $CurrentLifes
 onready var time_counter = $MarginContainer/Rows/TopRow/HBoxContainer/TimeCounter
 
 #onready var depuracion = $MarginContainer/Rows/BottomRow/HBoxContainer2/depuracion
-onready var boton = $Button
+onready var boton = $Volver
 
 onready var gameover_label = $GameOver
-
+onready var transition = $AnimationPlayer
 
 var player: Player
 var elapsed_time = 0  # Contador del tiempo transcurrido
@@ -25,6 +25,7 @@ func _ready():
 	boton.visible = false
 	boton.connect("pressed", self, "_on_button_pressed")
 	gameover_label.visible = false
+	$ColorRect.hide()
 	
 	
 
@@ -75,10 +76,15 @@ func _on_Timer_timeout():
 	
 
 func _on_button_pressed():
-	get_tree().change_scene("res://MenuPrincipal.tscn")
-	PLAYERDATA.reset_data()
+	$ColorRect.show()
+	$Selection.play()
+	transition.play("Transition")
 	
 func _on_player_dead_reset():
 	boton.visible = true
 	gameover_label.visible = true
+
+func _on_end_animation():
+	get_tree().change_scene("res://MenuPrincipal.tscn")
+	PLAYERDATA.reset_data()
 	

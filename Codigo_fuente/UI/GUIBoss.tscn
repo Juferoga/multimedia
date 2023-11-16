@@ -1,13 +1,14 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Assets/fonts/Inconsolata-VariableFont_wdth,wght.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://UI/GUI.gd" type="Script" id=2]
 [ext_resource path="res://Assets/images/Heart.png" type="Texture" id=3]
 [ext_resource path="res://Assets/fonts/UncrackedFreeTrial-X3WjK.otf" type="DynamicFontData" id=4]
 [ext_resource path="res://Assets/fonts/KnightWarrior-w16n8.otf" type="DynamicFontData" id=5]
-[ext_resource path="res://Assets/FinalBoss/eye fire1.png" type="Texture" id=6]
 [ext_resource path="res://Assets/fonts/Game_OVer.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://Assets/fonts/Superado.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Assets/fonts/SamuraiBlast-8MnyD.otf" type="DynamicFontData" id=9]
+[ext_resource path="res://Sounds/Menu Selection Click.wav" type="AudioStream" id=10]
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 3 )
@@ -100,6 +101,73 @@ shader_param/speed = 3.0
 [sub_resource type="DynamicFont" id=18]
 size = 50
 font_data = ExtResource( 8 )
+
+[sub_resource type="StyleBoxFlat" id=23]
+bg_color = Color( 0.333333, 0.333333, 0.0196078, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+
+[sub_resource type="StyleBoxFlat" id=24]
+bg_color = Color( 0.443137, 0.443137, 0.0196078, 1 )
+border_width_bottom = 5
+border_color = Color( 0.238281, 0.238281, 0.0127983, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color( 0.206055, 0.206055, 0.0110674, 1 )
+shadow_size = 5
+
+[sub_resource type="Theme" id=21]
+Button/styles/hover = SubResource( 23 )
+Button/styles/normal = SubResource( 24 )
+
+[sub_resource type="DynamicFont" id=22]
+size = 40
+extra_spacing_top = 10
+font_data = ExtResource( 9 )
+
+[sub_resource type="Animation" id=25]
+resource_name = "Transition"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_end_animation"
+} ]
+}
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource( 2 )
@@ -279,15 +347,6 @@ margin_bottom = 589.0
 custom_fonts/font = SubResource( 13 )
 text = "10"
 
-[node name="Button" type="Button" parent="."]
-margin_left = 821.0
-margin_top = 13.0
-margin_right = 1011.0
-margin_bottom = 55.0
-text = "VOLVER AL MENU"
-icon = ExtResource( 6 )
-align = 0
-
 [node name="GameOver" type="Label" parent="."]
 visible = false
 modulate = Color( 0.733333, 0.454902, 0.454902, 1 )
@@ -307,5 +366,25 @@ margin_right = 975.0
 margin_bottom = 212.0
 custom_fonts/font = SubResource( 18 )
 text = "¡Has superado la prueba!"
+
+[node name="Selection" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+
+[node name="Volver" type="Button" parent="."]
+margin_left = 854.0
+margin_top = 13.0
+margin_right = 1012.0
+margin_bottom = 71.0
+theme = SubResource( 21 )
+custom_fonts/font = SubResource( 22 )
+text = "MENU"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Transition = SubResource( 25 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1028.0
+margin_bottom = 603.0
+color = Color( 1, 1, 1, 0 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout_achivement"]

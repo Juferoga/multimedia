@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Assets/fonts/SamuraiBlast-8MnyD.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/GUI/book.png" type="Texture" id=2]
+[ext_resource path="res://Assets/GUI/HauntedHenhouse_3.jpg" type="Texture" id=3]
+[ext_resource path="res://Guia.gd" type="Script" id=4]
+[ext_resource path="res://Sounds/Menu Selection Click.wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/fonts/CyberDisplay-VGvGx.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.333333, 0.333333, 0.0196078, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.443137, 0.443137, 0.0196078, 1 )
+border_width_bottom = 5
+border_color = Color( 0.238281, 0.238281, 0.0127983, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color( 0.206055, 0.206055, 0.0110674, 1 )
+shadow_size = 5
+
+[sub_resource type="Theme" id=5]
+Button/styles/hover = SubResource( 4 )
+Button/styles/normal = SubResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 40
+extra_spacing_top = 10
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 30
+font_data = ExtResource( 6 )
+
+[node name="Logros" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 514, 301.5 )
+scale = Vector2( 0.279348, 0.303931 )
+texture = ExtResource( 3 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 500, 303 )
+scale = Vector2( 0.385258, 0.428858 )
+texture = ExtResource( 2 )
+
+[node name="Volver" type="Button" parent="."]
+margin_left = 23.0
+margin_top = 20.0
+margin_right = 181.0
+margin_bottom = 78.0
+theme = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
+text = "Volver"
+
+[node name="Selection" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 277.0
+margin_top = 193.0
+margin_right = 481.0
+margin_bottom = 405.0
+custom_fonts/font = SubResource( 7 )
+text = "PARA CONSEGUIR
+COMPLETAR EL 
+JUEGO CON ÉXTIO 
+SE RECOMIENDA 
+NO SER TAN MALO"
+
+[connection signal="pressed" from="Volver" to="." method="_on_Volver_pressed"]
