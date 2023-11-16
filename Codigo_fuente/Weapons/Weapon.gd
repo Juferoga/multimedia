@@ -13,6 +13,7 @@ var max_ammo: int = 10
 var current_ammo: int = max_ammo
 var player_position
 
+
 onready var end_of_gun = $EndOfGun
 onready var gun_direction = $GunDirection
 onready var attack_cooldown = $AttackCooldown
@@ -31,11 +32,12 @@ func _ready() -> void:
 func initialize(team: int):
 	self.team = team
 
-func start_reload():
+func start_reload(is_boss: bool):
 	emit_signal("reload_started")
 	#print("Reload")
 	animation_player.play("Reload")
-	gun_reload_sound.play() 
+	if !is_boss:
+		gun_reload_sound.play()
 	
 	
 
@@ -43,9 +45,8 @@ func _stop_reload():
 	current_ammo = max_ammo
 	emit_signal("reload_finished")
 
-func shoot():
-	if current_ammo != 0 and attack_cooldown.is_stopped() and Bullet	 != null:	
-		
+func shoot(is_player: bool):
+	if current_ammo != 0 and attack_cooldown.is_stopped() and Bullet != null:			
 		var bullet_instance = Bullet.instance()
 		var direction = (gun_direction.global_position - end_of_gun.global_position).normalized()
 		GlobalSignals.emit_signal("bullet_fired", bullet_instance, team,  end_of_gun.global_position, direction)
@@ -53,6 +54,7 @@ func shoot():
 		animation_player.play("GunFlash")
 		#print("Gunshoot") #Aqui deberia ir el sondo supongo lptm
 		gun_shoot.play()
-		current_ammo -= 1
-		
-			
+		current_ammo -= 1	
+	elif current_ammo == 0 and attack_cooldown.is_stopped() and is_player: 
+		$EmptyGun.play()
+		 

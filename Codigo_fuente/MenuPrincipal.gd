@@ -5,6 +5,7 @@ onready var transition = $AnimationPlayer
 var btnPlay = false
 var btnLogros = false
 var btnGuia = false 
+var btnMiras = false
 
 func _ready():
 	if MUSICMENU.is_playing == false:
@@ -33,6 +34,12 @@ func _on_LogrosBtn_pressed():
 	$ColorRect.show()
 	transition.play("Transition")
 	
+func _on_Crosshair_pressed():
+	btnMiras = true
+	$Selection.play()
+	$ColorRect.show()
+	transition.play("Transition")
+	
 
 func _on_animation_end():	
 	if btnPlay: 
@@ -42,10 +49,16 @@ func _on_animation_end():
 		
 	elif btnLogros:
 		get_tree().change_scene("res://Logros.tscn")
-		print("Debe")
+		
+	elif btnMiras: 
+		get_tree().change_scene("res://Crosshair.tscn")
+	
+		
 	btnPlay = false
 	btnLogros = false
 	btnGuia = false 
-
+	btnMiras = false
 		
 	
+
+

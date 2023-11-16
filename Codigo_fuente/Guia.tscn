@@ -1,11 +1,12 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/fonts/SamuraiBlast-8MnyD.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/GUI/book.png" type="Texture" id=2]
 [ext_resource path="res://Assets/GUI/HauntedHenhouse_3.jpg" type="Texture" id=3]
 [ext_resource path="res://Guia.gd" type="Script" id=4]
 [ext_resource path="res://Sounds/Menu Selection Click.wav" type="AudioStream" id=5]
-[ext_resource path="res://Assets/fonts/CyberDisplay-VGvGx.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Assets/fonts/Inconsolata-VariableFont_wdth,wght.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Assets/fonts/SpeedrushRegular-qZWp6.otf" type="DynamicFontData" id=7]
 
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.333333, 0.333333, 0.0196078, 1 )
@@ -34,8 +35,11 @@ extra_spacing_top = 10
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=7]
-size = 30
+size = 15
 font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=8]
+font_data = ExtResource( 7 )
 
 [node name="Logros" type="Node2D"]
 script = ExtResource( 4 )
@@ -64,15 +68,65 @@ stream = ExtResource( 5 )
 
 [node name="Label" type="Label" parent="."]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 277.0
-margin_top = 193.0
-margin_right = 481.0
-margin_bottom = 405.0
+margin_left = 191.0
+margin_top = 191.0
+margin_right = 559.0
+margin_bottom = 454.0
 custom_fonts/font = SubResource( 7 )
-text = "PARA CONSEGUIR
-COMPLETAR EL 
-JUEGO CON ÉXTIO 
-SE RECOMIENDA 
-NO SER TAN MALO"
+text = "A,W,S,D -- Para moverse
+
+R - Recargar
+
+Click izquierdo -- Disparar
+
+Control izquierdo -- Volver 
+al menú
+
+F1 -- Aumentar en 1 el número
+ de vidas (Si se usa  no se
+podrá desbloquear logros
+durante esa partida)
+"
+align = 1
+
+[node name="Label3" type="Label" parent="."]
+modulate = Color( 0.635294, 0.145098, 0.145098, 1 )
+margin_left = 609.0
+margin_top = 143.0
+margin_right = 686.0
+margin_bottom = 174.0
+custom_fonts/font = SubResource( 8 )
+text = "OBJETIVOS"
+
+[node name="Label2" type="Label" parent="."]
+modulate = Color( 0.635294, 0.145098, 0.145098, 1 )
+margin_left = 334.0
+margin_top = 143.0
+margin_right = 410.0
+margin_bottom = 174.0
+custom_fonts/font = SubResource( 8 )
+text = "CONTROLES"
+
+[node name="Label4" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 363.0
+margin_top = 191.0
+margin_right = 923.0
+margin_bottom = 454.0
+custom_fonts/font = SubResource( 7 )
+text = "Escenario 1:
+Se debe permanecer en la zona
+naranja hasta que el tiempo
+llegue a 0, luego se podrá
+cruzar el portal ubicado 
+en la parte inferior del mapa.
+
+Escenario 2:
+Se debe derrotar al Demonio
+para completar el juego.
+Pista: Usa los ojos demoniacos
+para frenar al Demonio.
+"
+align = 1
 
 [connection signal="pressed" from="Volver" to="." method="_on_Volver_pressed"]

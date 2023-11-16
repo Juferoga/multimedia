@@ -8,13 +8,13 @@
 [ext_resource path="res://Assets/fonts/CyberDisplay-VGvGx.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://Assets/fonts/KnightWarrior-w16n8.otf" type="DynamicFontData" id=7]
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=12]
 bg_color = Color( 0.333333, 0.333333, 0.0196078, 1 )
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=13]
 bg_color = Color( 0.443137, 0.443137, 0.0196078, 1 )
 border_width_bottom = 5
 border_color = Color( 0.238281, 0.238281, 0.0127983, 1 )
@@ -26,8 +26,8 @@ shadow_color = Color( 0.206055, 0.206055, 0.0110674, 1 )
 shadow_size = 5
 
 [sub_resource type="Theme" id=5]
-Button/styles/hover = SubResource( 4 )
-Button/styles/normal = SubResource( 2 )
+Button/styles/hover = SubResource( 12 )
+Button/styles/normal = SubResource( 13 )
 
 [sub_resource type="DynamicFont" id=6]
 size = 40

@@ -88,9 +88,9 @@ func _process(delta: float) -> void:
 				# Llama a la función de movimiento actual
 				if is_in_animation == false:
 					move_pattern()
-					weapon.shoot() 
+					weapon.shoot(false) 
 					if weapon.current_ammo == 0 :
-						weapon.start_reload()
+						weapon.start_reload(true)
 			else:
 				pass
 		_:
@@ -218,7 +218,7 @@ func set_move_state(new_state: int):
 		current_move_state = new_state
 
 func handle_reload():
-	weapon.start_reload()
+	weapon.start_reload(true)
 	
 
 func _on_PlayerDetection_body_entered(body):

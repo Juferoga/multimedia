@@ -66,7 +66,7 @@ func clear_enemies():
 		enemy.queue_free()
 		
 func level_configuration(level: int):
-	print("Level configuration")
+	#print("Level configuration")
 	match level:
 		1:
 			enemy_list[0]["weight"] = 0

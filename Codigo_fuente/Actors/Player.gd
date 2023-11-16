@@ -24,6 +24,7 @@ onready var team = $Team
 onready var pain_sounds = $PainSounds
 onready var game_over = $GameOver
 onready var lost_life = $LostLife
+
 #onready var player_data_node = $PlayerData
 
 #onready var player_data = get_node("res://Actors/PlayerData.gd")
@@ -55,8 +56,8 @@ func _ready():
 	
 
 func emit_initial_signals():
-	print("Inicializacion de las variables")
-	print("Vidas", lives)
+	#print("Inicializacion de las variables")
+	#print("Vidas", lives)
 	emit_signal("player_health_changed", health_stat.health)
 	emit_signal("player_current_ammo_changed", weapon.current_ammo)
 	emit_signal("player_max_ammo_changed", weapon.max_ammo)
@@ -91,19 +92,26 @@ func _physics_process(delta: float) -> void:
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot") and not is_reloading and is_alive:
-		weapon.shoot()
+		weapon.shoot(true)
 		
 	elif event.is_action_released("reload") and not is_reloading and is_alive:
-		weapon.start_reload()
+		weapon.start_reload(false)
 	
-	if event.is_action_pressed("toggle_debug"):
-		pass
-		
-		
-	
+	if event.is_action_pressed("toggle_debug") and is_alive:
+		PLAYERDATA.one_more_life()
+		lives += 1
+		PLAYERDATA.set_lives(lives)
+		emit_signal( "player_current_lifes_changed", lives)
+	if event.is_action_pressed("control_izquierdo"):
+		$Selection.play()
+		get_tree().change_scene("res://MenuPrincipal.tscn")
+		PLAYERDATA.reset_data()
+			
 	emit_signal("player_current_ammo_changed", weapon.current_ammo)
 
+
 	
+
 func handle_hit():
 	health_stat.health -= 20
 	PLAYERDATA.set_health(health_stat.health)
@@ -118,7 +126,7 @@ func handle_hit():
 		
 		
 func reload(): 
-	weapon.start_reload()
+	weapon.start_reload(false)
 			
 func get_team() -> int:
 	return team.team

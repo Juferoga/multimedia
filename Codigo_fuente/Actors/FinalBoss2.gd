@@ -103,26 +103,27 @@ func evaluate_achievements():
 	text = "ACTIVAR BOTON"
 	emit_signal( "player_depuracion", text)
 	
-	if not ACHIEVEMENTS.hasAchievement("no_hit") and health == 100 and lives == 3:
+	if not ACHIEVEMENTS.hasAchievement("no_hit") and health == 100 and lives == 3 and PLAYERDATA.cheats == false:
 		ACHIEVEMENTS.unlockAchievement("no_hit")
 		achievement_sound.play()
 		text = "CONSEGUIDO NO HIT"
 		
 		emit_signal( "player_depuracion", text)
-		print("EMITE SEÑAL")
-	if not ACHIEVEMENTS.hasAchievement("all_lifes") and lives == 3:
+		
+	if not ACHIEVEMENTS.hasAchievement("all_lifes") and lives == 3 and PLAYERDATA.cheats == false:
 		ACHIEVEMENTS.unlockAchievement("all_lifes")
 		achievement_sound.play()	
 		text = "CONSEGUDIO ALL LIFES"
 		emit_signal( "player_depuracion", text)
-		print("EMITE SEÑAL")
-	if not ACHIEVEMENTS.hasAchievement("hell_king"):
+		
+	if not ACHIEVEMENTS.hasAchievement("hell_king") and PLAYERDATA.cheats == false:
 		ACHIEVEMENTS.unlockAchievement("hell_king")
 		achievement_sound.play()	
 		text = "CONSEGUDIO HELL KING"
 		emit_signal("player_depuracion", text)
-		print("EMITE SEÑAL")
+		
 		
 	ACHIEVEMENTS.saveAchievements()
-
+	if PLAYERDATA.cheats:
+		print("True")
 	

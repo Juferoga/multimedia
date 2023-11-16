@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/topdown-shooter/Spritesheet/spritesheet_characters.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Sounds/PlayerPain/12.wav" type="AudioStream" id=10]
 [ext_resource path="res://Sounds/game_over.mp3" type="AudioStream" id=11]
 [ext_resource path="res://Sounds/lost_life.mp3" type="AudioStream" id=12]
+[ext_resource path="res://Sounds/Menu Selection Click.wav" type="AudioStream" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 18, 19.75 )
@@ -59,3 +60,6 @@ stream = ExtResource( 11 )
 [node name="LostLife" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
 volume_db = -10.0
+
+[node name="Selection" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )

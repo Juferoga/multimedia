@@ -94,27 +94,27 @@ texture = ExtResource( 3 )
 
 [node name="JugarBtn" type="Button" parent="."]
 margin_left = 68.0
-margin_top = 338.0
+margin_top = 294.0
 margin_right = 226.0
-margin_bottom = 396.0
+margin_bottom = 352.0
 theme = SubResource( 3 )
 custom_fonts/font = SubResource( 5 )
 text = "Jugar"
 
 [node name="LogrosBtn2" type="Button" parent="."]
 margin_left = 68.0
-margin_top = 488.0
+margin_top = 444.0
 margin_right = 226.0
-margin_bottom = 546.0
+margin_bottom = 502.0
 theme = SubResource( 3 )
 custom_fonts/font = SubResource( 5 )
 text = "GUÍA"
 
 [node name="LogrosBtn" type="Button" parent="."]
 margin_left = 68.0
-margin_top = 414.0
+margin_top = 370.0
 margin_right = 226.0
-margin_bottom = 472.0
+margin_bottom = 428.0
 theme = SubResource( 3 )
 custom_fonts/font = SubResource( 5 )
 text = "Logros"
@@ -131,6 +131,15 @@ text = "DESAFIO INFERNAL
 align = 1
 valign = 1
 
+[node name="Crosshair" type="Button" parent="Label"]
+margin_left = -125.0
+margin_top = 327.0
+margin_right = 33.0
+margin_bottom = 385.0
+theme = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
+text = "miras"
+
 [node name="Selection" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 
@@ -138,6 +147,7 @@ stream = ExtResource( 7 )
 anims/Transition = SubResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 margin_right = 1028.0
 margin_bottom = 603.0
 color = Color( 1, 1, 1, 0 )
@@ -145,3 +155,4 @@ color = Color( 1, 1, 1, 0 )
 [connection signal="pressed" from="JugarBtn" to="." method="_on_JugarBtn_pressed"]
 [connection signal="pressed" from="LogrosBtn2" to="." method="_on_LogrosBtn2_pressed"]
 [connection signal="pressed" from="LogrosBtn" to="." method="_on_LogrosBtn_pressed"]
+[connection signal="pressed" from="Label/Crosshair" to="." method="_on_Crosshair_pressed"]

@@ -9,12 +9,15 @@ onready var death_sound = $DeathSound2
 
 
 var is_diyng = false 
+var is_reloading = false
 
-
+signal reloading_changed
 
 func _ready() -> void: 
 	ia.initialize(self, weapon)
 	weapon.initialize(team.team)
+	weapon.connect("reload_started", self, "_on_reload_started")
+	weapon.connect("reload_finished", self, "_on_reload_finished")
 
 func handle_hit():
 	health_stat.health -= 100
@@ -28,3 +31,11 @@ func get_team() -> int:
 
 func _on_animation_finished():
 	queue_free()
+	
+func _on_reload_started():
+	is_reloading = true
+	#emit_signal("reloading_changed", is_reloading)
+
+func _on_reload_finished():
+	is_reloading = false
+	#emit_signal("reloading_changed", is_reloading)
