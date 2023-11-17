@@ -36,6 +36,7 @@ func _ready() -> void:
 	
 	
 	
+	
 
 func initialize(team: int):
 	self.team = team

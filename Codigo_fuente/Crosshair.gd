@@ -26,39 +26,52 @@ func _on_Volver_pressed():
 
 func _on_Yellow_1_pressed():
 	$Selection.play()
-	Input.set_custom_mouse_cursor(yellow_1)
-
+	var hotspot = Vector2(yellow_1.get_width() / 2, yellow_1.get_height() / 2)
+	Input.set_custom_mouse_cursor(yellow_1, Input.CURSOR_ARROW, hotspot)
 
 func _on_Yellow_2_pressed():
 	$Selection.play()
-	Input.set_custom_mouse_cursor(yellow_2)
+	var hotspot = Vector2(yellow_2.get_width() / 2, yellow_2.get_height() / 2)
+	Input.set_custom_mouse_cursor(yellow_2, Input.CURSOR_ARROW, hotspot)
 
 
 func _on_Yellow_3_pressed():
 	$Selection.play()
-	Input.set_custom_mouse_cursor(yellow_3)
+	var hotspot = Vector2(yellow_3.get_width() / 2, yellow_3.get_height() / 2)
+	Input.set_custom_mouse_cursor(yellow_3, Input.CURSOR_ARROW, hotspot)
 
 
 func _on_Yellow_4_pressed():
 	$Selection.play()
-	Input.set_custom_mouse_cursor(yellow_4)
+	var hotspot = Vector2(yellow_4.get_width() / 2, yellow_4.get_height() / 2)
+	Input.set_custom_mouse_cursor(yellow_4, Input.CURSOR_ARROW, hotspot)
 
 
 func _on_Yellow_5_pressed():
 	$Selection.play()
-	Input.set_custom_mouse_cursor(yellow_5)
+	var hotspot = Vector2(yellow_5.get_width() / 2, yellow_5.get_height() / 2)
+	Input.set_custom_mouse_cursor(yellow_5, Input.CURSOR_ARROW, hotspot)
 
 
 func _on_Yellow_6_pressed():
 	$Selection.play()
-	Input.set_custom_mouse_cursor(yellow_6)
+	var hotspot = Vector2(yellow_6.get_width() / 2, yellow_6.get_height() / 2)
+	Input.set_custom_mouse_cursor(yellow_6, Input.CURSOR_ARROW, hotspot)
 
 
 func _on_Yellow_7_pressed():
 	$Selection.play()
-	Input.set_custom_mouse_cursor(yellow_7)
+	var hotspot = Vector2(yellow_7.get_width() / 2, yellow_7.get_height() / 2)
+	Input.set_custom_mouse_cursor(yellow_7, Input.CURSOR_ARROW, hotspot)
 
 
 func _on_Yellow_8_pressed():
 	$Selection.play()
-	Input.set_custom_mouse_cursor(yellow_8)
+	var hotspot = Vector2(yellow_8.get_width() / 2, yellow_8.get_height() / 2)
+	Input.set_custom_mouse_cursor(yellow_8, Input.CURSOR_ARROW, hotspot)
+
+
+func _on_Documentation_pressed():
+	$Selection.play()
+	var url = "https://www.youtube.com/shorts/ee8eLg1r1vo"  
+	OS.shell_open(url)

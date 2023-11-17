@@ -34,6 +34,7 @@ shape = SubResource( 1 )
 
 [node name="Weapon" parent="." instance=ExtResource( 3 )]
 position = Vector2( 24, 12 )
+rotation = -0.0261799
 
 [node name="Team" parent="." instance=ExtResource( 5 )]
 
