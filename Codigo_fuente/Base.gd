@@ -15,6 +15,7 @@ var seconds_change_difficulty_total = seconds_change_difficulty_interval
 
 signal change_difficulty
 signal base_captured
+signal timer_value
 
 func _ready():
 	pass
@@ -66,11 +67,11 @@ func _process(delta: float) -> void:
 		#var comparison_string = str(rounded_init_time) + " - " + str(seconds_change_difficulty_total) + " == " + str(rounded_base_timer)
 		#print(comparison_string)
 		tiempoantes = tiempoahora
-	
+		emit_signal("timer_value", tiempoahora)
 	
 	#if in_zone and base_timer.time_left > 0:
 	#	print(base_timer.time_left)
-	
+	 
 	
 		
 

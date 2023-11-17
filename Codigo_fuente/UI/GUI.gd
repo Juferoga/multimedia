@@ -10,7 +10,7 @@ onready var max_ammo = $MaxAmmo
 onready var current_lifes = $CurrentLifes
 #onready var max_lifes = $MarginContainer/Rows/TopRow/HBoxContainer3/MaxLifes
 # Tiempo
-onready var time_counter = $MarginContainer/Rows/TopRow/HBoxContainer/TimeCounter
+onready var time_counter = $TimeCounter
 
 #onready var depuracion = $MarginContainer/Rows/BottomRow/HBoxContainer2/depuracion
 onready var boton = $Volver
@@ -28,6 +28,8 @@ func _ready():
 	$ColorRect.hide()
 	
 	
+	
+	
 
 func set_player(new_player:Player):
 	self.player = new_player
@@ -42,6 +44,9 @@ func set_player(new_player:Player):
 	player.connect("is_player_dead", self, "_on_player_dead_reset")
 	# Depuracion
 	#player.connect("time_counter_changed", self, "set_time_counter")
+	var base_node = get_node("../Base")
+	base_node.connect("timer_value", self, "set_timer_value")
+	
 	if player != null:
 		player.emit_initial_signals()
 
@@ -68,12 +73,16 @@ func set_max_lifes(new_max_lifes):
 	pass
 
 func set_time_counter(new_time_counter):
-	time_counter.text = str(new_time_counter)
+	#time_counter.text = str(new_time_counter)
+	pass
 
 func _on_Timer_timeout():
-	elapsed_time += 1  # Aumentamos el contador en uno cada vez que se llama la función
-	set_time_counter(elapsed_time)  # Actualizamos el contador en la UI
+	#elapsed_time += 1  # Aumentamos el contador en uno cada vez que se llama la función
+	#set_time_counter(elapsed_time)  # Actualizamos el contador en la UI
+	pass
 	
+func set_timer_value(time: int):
+	time_counter.text = str(time)
 
 func _on_button_pressed():
 	$ColorRect.show()

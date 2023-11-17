@@ -27,6 +27,7 @@ func _ready():
 	base.connect("change_difficulty", self, "increase_difficulty")
 	level_configuration(level)
 	spawn_timer.start()
+	
 	spawn_timer.connect("timeout", gui, "_on_Timer_timeout")
 	
 	var player = get_node("Player")
