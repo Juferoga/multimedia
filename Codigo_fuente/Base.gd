@@ -12,6 +12,9 @@ var in_zone = false
 var init_time = 0.0
 var seconds_change_difficulty_interval = 30
 var seconds_change_difficulty_total = seconds_change_difficulty_interval
+var tiempoantes = 0
+var tiempoahora  = 0
+var is_base_captured = false
 
 signal change_difficulty
 signal base_captured
@@ -38,14 +41,18 @@ func _on_Base_body_exited(body):
 		base_timer.stop() 
 
 func _on_BaseTimer_timeout():
+	if !is_base_captured: 
+		captured_sound.play()
 	sprite.modulate = base_color
 	base_timer.stop()
-	captured_sound.playing = true
 	emit_signal("base_captured")
+	tiempoahora = 0
+	emit_signal("timer_value", tiempoahora)
+	is_base_captured = true
+	
 
 
-var tiempoantes = 0
-var tiempoahora  = 0
+
 	
 	
 #Imprime en consola el tiempo (Es para la GUI alguna lógica así seguramente)
@@ -62,7 +69,7 @@ func _process(delta: float) -> void:
 		emit_signal("change_difficulty", rounded_base_timer)
 		
 	
-	if tiempoahora != tiempoantes and tiempoahora != 0:
+	if tiempoahora != tiempoantes and tiempoahora != 0 and !is_base_captured:
 		#print(tiempoahora)
 		#var comparison_string = str(rounded_init_time) + " - " + str(seconds_change_difficulty_total) + " == " + str(rounded_base_timer)
 		#print(comparison_string)

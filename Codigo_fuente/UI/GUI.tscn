@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Assets/fonts/Inconsolata-VariableFont_wdth,wght.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://UI/GUI.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Assets/fonts/Game_OVer.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://Sounds/Menu Selection Click.wav" type="AudioStream" id=7]
 [ext_resource path="res://Assets/fonts/Superado.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Sounds/Clock.wav" type="AudioStream" id=9]
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 4 )
@@ -265,7 +266,7 @@ color = Color( 1, 1, 1, 0 )
 
 [node name="Panel" type="Panel" parent="."]
 modulate = Color( 1, 1, 1, 0.411765 )
-margin_left = 473.0
+margin_left = 472.0
 margin_top = 4.0
 margin_right = 549.0
 margin_bottom = 38.0
@@ -277,8 +278,13 @@ margin_top = 2.0
 margin_right = 1021.0
 margin_bottom = 28.0
 custom_fonts/font = SubResource( 23 )
-text = "90"
+text = "90
+"
 align = 1
 valign = 1
+
+[node name="clock" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+pitch_scale = 1.5
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout_achivement"]

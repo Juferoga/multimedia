@@ -82,7 +82,14 @@ func _on_Timer_timeout():
 	pass
 	
 func set_timer_value(time: int):
-	time_counter.text = str(time)
+	if time == 30 or time == 60 or time == 0:
+		time_counter.modulate = Color(1, 0, 0)
+		time_counter.text = str(time)
+		if time != 0:
+			$clock.play()
+	else: 
+		time_counter.text = str(time)
+		time_counter.modulate = Color(1, 1, 1) 
 
 func _on_button_pressed():
 	$ColorRect.show()
