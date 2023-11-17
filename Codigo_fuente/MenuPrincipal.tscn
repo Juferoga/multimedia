@@ -119,6 +119,15 @@ theme = SubResource( 3 )
 custom_fonts/font = SubResource( 5 )
 text = "Logros"
 
+[node name="Crosshair" type="Button" parent="."]
+margin_left = 68.0
+margin_top = 518.0
+margin_right = 226.0
+margin_bottom = 576.0
+theme = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
+text = "miras"
+
 [node name="Label" type="Label" parent="."]
 modulate = Color( 0.878431, 0.811765, 0.811765, 1 )
 margin_left = 193.0
@@ -130,15 +139,6 @@ text = "DESAFIO INFERNAL
 "
 align = 1
 valign = 1
-
-[node name="Crosshair" type="Button" parent="Label"]
-margin_left = -125.0
-margin_top = 327.0
-margin_right = 33.0
-margin_bottom = 385.0
-theme = SubResource( 3 )
-custom_fonts/font = SubResource( 5 )
-text = "miras"
 
 [node name="Selection" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
@@ -155,4 +155,4 @@ color = Color( 1, 1, 1, 0 )
 [connection signal="pressed" from="JugarBtn" to="." method="_on_JugarBtn_pressed"]
 [connection signal="pressed" from="LogrosBtn2" to="." method="_on_LogrosBtn2_pressed"]
 [connection signal="pressed" from="LogrosBtn" to="." method="_on_LogrosBtn_pressed"]
-[connection signal="pressed" from="Label/Crosshair" to="." method="_on_Crosshair_pressed"]
+[connection signal="pressed" from="Crosshair" to="." method="_on_Crosshair_pressed"]
