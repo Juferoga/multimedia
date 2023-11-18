@@ -9,6 +9,10 @@ onready var attack_animation = $AnimationPlayer
 onready var death_sound = $DeathSound
 onready var sprite = $Sprite
 
+onready var random_sound_timer = $RandomSoundTimer
+onready var sound_effects = [$SoundEnemy1, $SoundEnemy2, $SoundEnemy3]
+
+
 
 export (int) var damage = 100  
 export (float) var attack_cooldown = 1.0
@@ -24,6 +28,26 @@ func _ready() -> void:
 	sprite.show()
 	attack.connect("body_entered", self, "_on_AttackZone_body_entered")
 	attack.connect("body_exited", self, "_on_AttackZone_body_exited")
+	
+	random_sound_timer.wait_time = rand_range(1, 5)  # Tiempo aleatorio entre 5 y 15 segundos
+	random_sound_timer.start()
+	random_sound_timer.connect("timeout", self, "_on_RandomSoundTimer_timeout")
+	
+	
+func _on_RandomSoundTimer_timeout():
+	if !is_any_sound_playing():
+		var random_index = randi() % sound_effects.size()  # Seleccionar un índice aleatorio
+		sound_effects[random_index].play()
+
+	random_sound_timer.wait_time = rand_range(5, 10)  # Restablecer el temporizador para la próxima reproducción
+	random_sound_timer.start()
+
+func is_any_sound_playing() -> bool:
+	for sound in sound_effects:
+		if sound.playing:
+			return true
+	return false
+	
 
 func handle_hit():
 	health_stat.health -= damage 

@@ -114,8 +114,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func handle_hit():
 	health_stat.health -= 20
-	PLAYERDATA.set_health(health_stat.health)
 	emit_signal("player_health_changed", health_stat.health)
+	PLAYERDATA.set_health(health_stat.health)
 	if health_stat.health <= 0:
 		lose_life()
 	else:

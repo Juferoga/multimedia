@@ -11,6 +11,7 @@ enum State {
 onready var player_detection = $PlayerDetection
 
 
+
 var current_state: int  = State.PATROL setget set_state
 var player: Player = null 
 var weapon: Weapon = null
@@ -36,6 +37,8 @@ func _process(delta: float) -> void:
 				pass
 		_:
 			print("Error: state enemy unknow")
+			
+	
 
 func initialize(actor):
 	self.actor = actor
