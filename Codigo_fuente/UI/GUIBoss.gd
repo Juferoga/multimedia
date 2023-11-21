@@ -3,6 +3,7 @@ extends CanvasLayer
 # Verificamos que esten cargados los componentes
 # Salud
 onready var health_bar = $MarginContainer/Rows/BottomRow/HBoxContainer/HealtBar
+onready var health_bar_boss = $HealtBarBoss
 # Armas
 onready var current_ammo = $CurrentAmmo
 onready var max_ammo = $MaxAmmo
@@ -30,6 +31,12 @@ func _ready():
 	gameover_label.visible = false
 	complete_label.visible = false
 	$ColorRect.hide()
+	var final_boss_node = get_node("../FinalBoss")
+	final_boss_node.connect("set_health", self, "set_boss_health")
+	health_bar_boss.value = 100
+
+func set_boss_health(new_health: int):
+	health_bar_boss.value = new_health
 
 func set_player(new_player:Player):
 	self.player = new_player
@@ -50,7 +57,6 @@ func set_player(new_player:Player):
 	if player != null:
 		player.emit_initial_signals()
 	
-
 
 func set_new_health_value(new_health: int):
 	health_bar.value = new_health

@@ -19,6 +19,7 @@ var is_diyng = false
 signal set_fase
 signal player_depuracion(new_text)
 signal boss_dead
+signal set_health(new_health)
 
 
 func _ready() -> void: 
@@ -30,6 +31,7 @@ func _ready() -> void:
 func handle_hit():
 	hit_boss.play()
 	health_stat.health -= 2
+	emit_signal("set_health", health_stat.health)
 	#Diferentes fases por vida
 	if health_stat.health == 76: 
 		sound_fase2.play()

@@ -1,14 +1,16 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Assets/fonts/Inconsolata-VariableFont_wdth,wght.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://UI/GUI.gd" type="Script" id=2]
 [ext_resource path="res://Assets/images/Heart.png" type="Texture" id=3]
 [ext_resource path="res://Assets/fonts/UncrackedFreeTrial-X3WjK.otf" type="DynamicFontData" id=4]
 [ext_resource path="res://Assets/fonts/KnightWarrior-w16n8.otf" type="DynamicFontData" id=5]
+[ext_resource path="res://Assets/FinalBoss/LifeBar/void.png" type="Texture" id=6]
 [ext_resource path="res://Assets/fonts/Game_OVer.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://Assets/fonts/Superado.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://Assets/fonts/SamuraiBlast-8MnyD.otf" type="DynamicFontData" id=9]
 [ext_resource path="res://Sounds/Menu Selection Click.wav" type="AudioStream" id=10]
+[ext_resource path="res://Assets/FinalBoss/LifeBar/full.png" type="Texture" id=11]
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 3 )
@@ -169,7 +171,7 @@ tracks/2/keys = {
 } ]
 }
 
-[node name="GUI" type="CanvasLayer"]
+[node name="GUIBoss" type="CanvasLayer"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -382,9 +384,24 @@ text = "MENU"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Transition = SubResource( 25 )
 
+[node name="HealtBarBoss" type="TextureProgress" parent="."]
+margin_left = 334.0
+margin_top = 11.0
+margin_right = 672.0
+margin_bottom = 51.0
+texture_under = ExtResource( 6 )
+texture_progress = ExtResource( 11 )
+
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 1028.0
 margin_bottom = 603.0
 color = Color( 1, 1, 1, 0 )
+
+[node name="HealtBarBoss3" type="ProgressBar" parent="."]
+visible = false
+margin_left = 398.0
+margin_top = 16.0
+margin_right = 598.0
+margin_bottom = 30.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout_achivement"]
