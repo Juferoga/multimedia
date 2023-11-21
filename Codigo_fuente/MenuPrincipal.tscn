@@ -185,7 +185,6 @@ stream = ExtResource( 7 )
 anims/Transition = SubResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 margin_right = 1028.0
 margin_bottom = 603.0
 color = Color( 1, 1, 1, 0 )

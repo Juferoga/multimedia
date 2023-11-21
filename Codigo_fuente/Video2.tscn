@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Video/Animacion2.ogv" type="VideoStream" id=1]
+[ext_resource path="res://Video2.gd" type="Script" id=2]
+
+[node name="Video2" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="VideoPlayer" type="VideoPlayer" parent="."]
+margin_top = -77.0
+margin_right = 1028.0
+margin_bottom = 675.0
+stream = ExtResource( 1 )
+autoplay = true
+
+[connection signal="finished" from="VideoPlayer" to="." method="_on_VideoPlayer_finished"]

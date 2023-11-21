@@ -55,7 +55,8 @@ func _on_Creditos_pressed():
 
 func _on_animation_end():	
 	if btnPlay: 
-		get_tree().change_scene("res://Main.tscn")		
+		#get_tree().change_scene("res://Main.tscn")		
+		get_tree().change_scene("res://Video1.tscn")	
 	elif btnGuia:
 		get_tree().change_scene("res://Guia.tscn")		
 	elif btnLogros:

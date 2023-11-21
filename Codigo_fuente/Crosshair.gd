@@ -73,5 +73,5 @@ func _on_Yellow_8_pressed():
 
 func _on_Documentation_pressed():
 	$Selection.play()
-	var url = "https://www.youtube.com/shorts/ee8eLg1r1vo"  
+	var url = "https://docs.google.com/document/d/1dwzIvi7qw5YWXFVH2AE9Nemqhudc9UGG13WZD-xiwRI/edit?usp=sharing"  
 	OS.shell_open(url)
