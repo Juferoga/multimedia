@@ -5,7 +5,7 @@ var music_stream = AudioStreamPlayer.new()
 var is_playing = false
 
 func _ready():
-	music_stream.volume_db = -20
+	music_stream.volume_db = -5
 	add_child(music_stream)
 
 	if not music_stream.is_connected("finished", self, "_on_music_finished"):

@@ -166,7 +166,6 @@ team = 1
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
-volume_db = -20.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/AnimationAttack = SubResource( 6 )
@@ -177,7 +176,7 @@ anims/DeathAnimation = SubResource( 7 )
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 scale = Vector2( 0.698454, 1.00284 )
 stream = ExtResource( 7 )
-volume_db = -28.0
+volume_db = -8.0
 pitch_scale = 2.5
 
 [node name="DeathFlash" type="Sprite" parent="."]
@@ -188,15 +187,12 @@ texture = SubResource( 8 )
 
 [node name="SoundEnemy1" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 9 )
-volume_db = -20.0
 
 [node name="SoundEnemy2" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 10 )
-volume_db = -20.0
 
 [node name="SoundEnemy3" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 11 )
-volume_db = -20.0
 
 [node name="RandomSoundTimer" type="Timer" parent="."]
 

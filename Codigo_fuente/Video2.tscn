@@ -11,7 +11,7 @@ margin_top = -77.0
 margin_right = 1028.0
 margin_bottom = 675.0
 stream = ExtResource( 1 )
-volume_db = -5.0
+volume_db = 5.0
 autoplay = true
 
 [connection signal="finished" from="VideoPlayer" to="." method="_on_VideoPlayer_finished"]

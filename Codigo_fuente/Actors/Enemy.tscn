@@ -158,7 +158,7 @@ position = Vector2( 0.232361, -0.162598 )
 rotation = -1.57079
 scale = Vector2( 0.0209536, 0.0902556 )
 stream = ExtResource( 8 )
-volume_db = -28.0
+volume_db = -8.0
 pitch_scale = 2.5
 
 [node name="DeathFlash" type="Sprite" parent="."]

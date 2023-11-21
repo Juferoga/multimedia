@@ -337,7 +337,7 @@ shape = SubResource( 2 )
 
 [node name="Dash" type="AudioStreamPlayer2D" parent="IABoss"]
 stream = ExtResource( 10 )
-volume_db = -12.0
+volume_db = 8.0
 
 [node name="Team" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1, -3.99998 )
@@ -356,14 +356,14 @@ position = Vector2( -9.05762, -1.86328 )
 rotation = -1.57079
 scale = Vector2( 0.0209536, 0.0902556 )
 stream = ExtResource( 9 )
-volume_db = -10.0
+volume_db = 10.0
 
 [node name="DeathSound2" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( -9.05762, -1.86328 )
 rotation = -1.57079
 scale = Vector2( 0.0209536, 0.0902556 )
 stream = ExtResource( 8 )
-volume_db = 5.0
+volume_db = 25.0
 
 [node name="DeathFlash" type="Sprite" parent="DeathSound2"]
 visible = false
@@ -385,19 +385,19 @@ wait_time = 2.0
 
 [node name="Fase2Sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 11 )
-volume_db = -10.0
+volume_db = 10.0
 
 [node name="Fase3Sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 12 )
-volume_db = -10.0
+volume_db = 10.0
 
 [node name="Fase4Sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 13 )
-volume_db = -10.0
+volume_db = 10.0
 
 [node name="AchievementSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
-volume_db = -5.0
+volume_db = 15.0
 
 [connection signal="body_entered" from="IABoss/PlayerDetection" to="IABoss" method="_on_PlayerDetection_body_entered"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]

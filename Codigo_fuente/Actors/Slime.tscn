@@ -163,7 +163,7 @@ team = 1
 
 [node name="AttackSoundSlime" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
-volume_db = -5.0
+volume_db = 15.0
 pitch_scale = 2.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -175,7 +175,7 @@ anims/MoveSlime = SubResource( 6 )
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 scale = Vector2( 0.698454, 1.00284 )
 stream = ExtResource( 7 )
-volume_db = -10.0
+volume_db = 10.0
 pitch_scale = 1.5
 
 [node name="DeathFlash" type="Sprite" parent="."]

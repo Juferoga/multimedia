@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://MenuPrincipal.gd" type="Script" id=1]
 [ext_resource path="res://Assets/GUI/HauntedHenhouse_3.jpg" type="Texture" id=2]
 [ext_resource path="res://Assets/GUI/deadCover.png" type="Texture" id=3]
 [ext_resource path="res://Assets/fonts/SpeedrushRegular-qZWp6.otf" type="DynamicFontData" id=4]
 [ext_resource path="res://Assets/fonts/SamuraiBlast-8MnyD.otf" type="DynamicFontData" id=5]
+[ext_resource path="res://Assets/GUI/IconDemon.png" type="Texture" id=6]
 [ext_resource path="res://Sounds/Menu Selection Click.wav" type="AudioStream" id=7]
 
 [sub_resource type="StyleBoxFlat" id=7]
@@ -169,14 +170,19 @@ text = "CRÉDITOS"
 [node name="Label" type="Label" parent="."]
 modulate = Color( 0.878431, 0.811765, 0.811765, 1 )
 margin_left = 193.0
-margin_top = 191.0
+margin_top = 205.0
 margin_right = 1233.0
-margin_bottom = 547.0
+margin_bottom = 561.0
 custom_fonts/font = SubResource( 1 )
 text = "DESAFIO INFERNAL
 "
 align = 1
 valign = 1
+
+[node name="IconDemon" type="Sprite" parent="."]
+position = Vector2( 942, 85.0001 )
+scale = Vector2( 0.454502, 0.454502 )
+texture = ExtResource( 6 )
 
 [node name="Selection" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )

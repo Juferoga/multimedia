@@ -1116,22 +1116,22 @@ autostart = true
 
 [node name="BacksoundFinal" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
-volume_db = -30.0
+volume_db = -10.0
 
 [node name="SoundRock" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
-volume_db = -15.0
+volume_db = 5.0
 
 [node name="TiempoAMenu" type="Timer" parent="."]
 wait_time = 8.0
 
 [node name="FinalMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
-volume_db = -10.0
+volume_db = 10.0
 
 [node name="MusicDead" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
-volume_db = -15.0
+volume_db = 5.0
 
 [connection signal="player_depuracion" from="FinalBoss" to="GUI" method="_on_FinalBoss_player_depuracion"]
 [connection signal="timeout" from="TiempoAMenu" to="." method="_on_TiempoAMenu_timeout"]

@@ -333,7 +333,7 @@ anims/DeathAnimation = SubResource( 3 )
 position = Vector2( -0.539551, 0.483978 )
 scale = Vector2( 0.209536, 0.300852 )
 stream = ExtResource( 8 )
-volume_db = -28.0
+volume_db = -8.0
 pitch_scale = 2.5
 
 [connection signal="body_entered" from="IA/PlayerDetection" to="IA" method="_on_PlayerDetection_body_entered"]

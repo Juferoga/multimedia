@@ -84,15 +84,15 @@ anims/Reload = SubResource( 2 )
 
 [node name="GunReloadSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
-volume_db = -20.0
+volume_db = 0
 max_distance = 500.0
 
 [node name="GunShoot" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
-volume_db = -30.0
+volume_db = -10.0
 pitch_scale = 5.0
 
 [node name="BossShoot" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 7 )
-volume_db = -20.0
+volume_db = 0
 pitch_scale = 1.5
