@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://MenuPrincipal.gd" type="Script" id=1]
 [ext_resource path="res://Assets/GUI/HauntedHenhouse_3.jpg" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Assets/fonts/SamuraiBlast-8MnyD.otf" type="DynamicFontData" id=5]
 [ext_resource path="res://Assets/GUI/IconDemon.png" type="Texture" id=6]
 [ext_resource path="res://Sounds/Menu Selection Click.wav" type="AudioStream" id=7]
+[ext_resource path="res://Assets/GUI/SoundBar.png" type="Texture" id=8]
 
 [sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.333333, 0.333333, 0.0196078, 1 )
@@ -107,6 +108,24 @@ tracks/2/keys = {
 } ]
 }
 
+[sub_resource type="StyleBoxFlat" id=15]
+bg_color = Color( 0.309804, 0.0666667, 0.0666667, 1 )
+border_width_bottom = 4
+border_color = Color( 0.137255, 0.0313726, 0.0313726, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color( 0.560784, 0.12549, 0.12549, 1 )
+shadow_size = 7
+
+[sub_resource type="DynamicFont" id=14]
+font_data = ExtResource( 5 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 8 )
+region = Rect2( 190.756, 236.328, 7.49448, 19.507 )
+
 [node name="Menu" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -190,7 +209,36 @@ stream = ExtResource( 7 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Transition = SubResource( 6 )
 
+[node name="Panel" type="Panel" parent="."]
+modulate = Color( 0.878431, 0.886275, 0.0117647, 1 )
+margin_left = 766.0
+margin_top = 561.0
+margin_right = 1020.0
+margin_bottom = 595.0
+custom_styles/panel = SubResource( 15 )
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 766.0
+margin_top = 567.0
+margin_right = 847.0
+margin_bottom = 590.0
+custom_fonts/font = SubResource( 14 )
+text = "Volumen"
+align = 1
+valign = 1
+
+[node name="HSlider" type="HSlider" parent="."]
+margin_left = 847.0
+margin_top = 561.0
+margin_right = 1013.0
+margin_bottom = 592.0
+custom_icons/grabber_highlight = SubResource( 13 )
+custom_icons/grabber = SubResource( 13 )
+min_value = -60.0
+max_value = 0.0
+
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 margin_right = 1028.0
 margin_bottom = 603.0
 color = Color( 1, 1, 1, 0 )
@@ -200,3 +248,4 @@ color = Color( 1, 1, 1, 0 )
 [connection signal="pressed" from="LogrosBtn" to="." method="_on_LogrosBtn_pressed"]
 [connection signal="pressed" from="Crosshair" to="." method="_on_Crosshair_pressed"]
 [connection signal="pressed" from="Creditos" to="." method="_on_Creditos_pressed"]
+[connection signal="value_changed" from="HSlider" to="." method="_on_HSlider_value_changed"]

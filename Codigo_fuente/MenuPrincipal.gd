@@ -2,6 +2,7 @@ extends Node2D
 
 onready var transition = $AnimationPlayer
 var yellow_5 = preload("res://Assets/Crosshair/Yellow/20.png")
+onready var volume_slider = $HSlider
 
 var btnPlay = false
 var btnLogros = false
@@ -15,6 +16,8 @@ func _ready():
 	$ColorRect.hide()
 	var hotspot = Vector2(yellow_5.get_width() / 2, yellow_5.get_height() / 2)
 	Input.set_custom_mouse_cursor(yellow_5, Input.CURSOR_ARROW, hotspot)
+	var current_volume = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master"))
+	volume_slider.value = current_volume
 
 
 func _on_LogrosBtn2_pressed():
@@ -73,3 +76,7 @@ func _on_animation_end():
 	btnMiras = false
 	btnCreditos = false
 		
+
+
+func _on_HSlider_value_changed(value):
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), value)
