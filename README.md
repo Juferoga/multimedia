@@ -14,6 +14,8 @@
 
 
 **Proyecto final de la materia Multimedia, consiste en un videojuego 2D tipo Shooter.**
+Puedes jugarlo de forma web aquí: ![image](https://github.com/Dannyngve5/Videojuego_multimedia/assets/143227824/fc4f76fe-5395-40a2-aaef-0bc74fbfe202)
+O de forma local descargando el zip encontrado en el proyecto.
 
 <br>
 
