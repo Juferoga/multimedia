@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Video/Animacion1VideoJuego.ogv" type="VideoStream" id=1]
 [ext_resource path="res://Video1.gd" type="Script" id=2]
 [ext_resource path="res://Assets/fonts/Superado.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Assets/fonts/Inconsolata-VariableFont_wdth,wght.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.290196, 0.27451, 0.27451, 1 )
@@ -69,6 +70,10 @@ tracks/2/keys = {
 } ]
 }
 
+[sub_resource type="DynamicFont" id=6]
+size = 30
+font_data = ExtResource( 4 )
+
 [node name="Video1" type="Node2D"]
 script = ExtResource( 2 )
 
@@ -98,5 +103,156 @@ margin_right = 1028.0
 margin_bottom = 603.0
 color = Color( 1, 1, 1, 0 )
 
+[node name="Label1" type="Label" parent="."]
+visible = false
+modulate = Color( 1, 0.968627, 0, 1 )
+margin_left = -269.0
+margin_top = 447.0
+margin_right = 1306.0
+margin_bottom = 671.0
+custom_fonts/font = SubResource( 6 )
+text = "AH! Que asco de vida, daría lo que fuera 
+por un poco de emoción"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+modulate = Color( 1, 0.968627, 0, 1 )
+margin_left = -269.0
+margin_top = 447.0
+margin_right = 1306.0
+margin_bottom = 671.0
+custom_fonts/font = SubResource( 6 )
+text = "¿QUÉ?, ¿Qué fue eso?"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="."]
+visible = false
+modulate = Color( 1, 0.968627, 0, 1 )
+margin_left = -269.0
+margin_top = 447.0
+margin_right = 1306.0
+margin_bottom = 671.0
+custom_fonts/font = SubResource( 6 )
+text = "¿Lo que sea has dicho?"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="."]
+visible = false
+modulate = Color( 1, 0.968627, 0, 1 )
+margin_left = -269.0
+margin_top = 447.0
+margin_right = 1306.0
+margin_bottom = 671.0
+custom_fonts/font = SubResource( 6 )
+text = "Si demuestras que eres lo suficientemente fuerte 
+ para superar mi reto"
+align = 1
+valign = 1
+
+[node name="Label5" type="Label" parent="."]
+visible = false
+modulate = Color( 1, 0.968627, 0, 1 )
+margin_left = -269.0
+margin_top = 447.0
+margin_right = 1306.0
+margin_bottom = 671.0
+custom_fonts/font = SubResource( 6 )
+text = "Te consderé todos tus deseos"
+align = 1
+valign = 1
+
+[node name="Label6" type="Label" parent="."]
+visible = false
+modulate = Color( 1, 0.968627, 0, 1 )
+margin_left = -269.0
+margin_top = 447.0
+margin_right = 1306.0
+margin_bottom = 671.0
+custom_fonts/font = SubResource( 6 )
+text = "Si fallas"
+align = 1
+valign = 1
+
+[node name="Label7" type="Label" parent="."]
+visible = false
+modulate = Color( 1, 0.968627, 0, 1 )
+margin_left = -269.0
+margin_top = 447.0
+margin_right = 1306.0
+margin_bottom = 671.0
+custom_fonts/font = SubResource( 6 )
+text = "MORIRÁS"
+align = 1
+valign = 1
+
+[node name="Label8" type="Label" parent="."]
+visible = false
+modulate = Color( 1, 0.968627, 0, 1 )
+margin_left = -269.0
+margin_top = 447.0
+margin_right = 1306.0
+margin_bottom = 671.0
+custom_fonts/font = SubResource( 6 )
+text = "Acepto"
+align = 1
+valign = 1
+
+[node name="Timer1" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]
+one_shot = true
+
+[node name="Timer3" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="Timer4" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="Timer5" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Timer6" type="Timer" parent="."]
+wait_time = 4.5
+one_shot = true
+
+[node name="Timer7" type="Timer" parent="."]
+wait_time = 2.75
+one_shot = true
+
+[node name="Timer8" type="Timer" parent="."]
+one_shot = true
+
+[node name="Timer9" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Timer10" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Timer11" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
 [connection signal="finished" from="VideoPlayer" to="." method="_on_VideoPlayer_finished"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="timeout" from="Timer1" to="." method="_on_Timer1_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]
+[connection signal="timeout" from="Timer3" to="." method="_on_Timer3_timeout"]
+[connection signal="timeout" from="Timer4" to="." method="_on_Timer4_timeout"]
+[connection signal="timeout" from="Timer5" to="." method="_on_Timer5_timeout"]
+[connection signal="timeout" from="Timer6" to="." method="_on_Timer6_timeout"]
+[connection signal="timeout" from="Timer7" to="." method="_on_Timer7_timeout"]
+[connection signal="timeout" from="Timer8" to="." method="_on_Timer8_timeout"]
+[connection signal="timeout" from="Timer9" to="." method="_on_Timer9_timeout"]
+[connection signal="timeout" from="Timer10" to="." method="_on_Timer10_timeout"]
+[connection signal="timeout" from="Timer11" to="." method="_on_Timer11_timeout"]
